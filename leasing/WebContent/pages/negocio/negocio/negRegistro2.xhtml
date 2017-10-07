@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"   
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:c="http://java.sun.com/jstl/core">
+<head>
+<link rel="stylesheet" type="text/css" href="../../../css/estilosLeasing1.css"/>
+</head>
+<body>
+<table align="center" border="0" width="50Opx" bordercolor="#FF3333" bgcolor="#FFFFFF"  cellpadding="2" cellspacing="2" class="styleTables" >
+<tr>
+ <td>
+    
+ <h:form id="frmCrear2" >
+  <table align="center" border="0"  bordercolor="#FFFFFF" bgcolor="#FFFFFF"  cellpadding="2" cellspacing="2" class="styleTables"  width="100%;" style=" width : 100%;">
+	<thead><tr><td colspan="4" style="text-align:  center;font-weight: bold;">Formulario de Negocio</td></tr></thead>
+     <tbody>	
+       <tr><td  bgcolor="#DDE9DC" ><h:outputText value=" "         /></td><td> <rich:message id="message_mpaValoresByFkPersonasValoresTipoid"  for="mpaValoresByFkPersonasValoresTipoid" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td><td  bgcolor="#DDE9DC" ><h:outputText value=" "         /></td><td> <rich:message id="message_perIdentificacion"  for="perIdentificacion" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+	   <tr><td bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value="Tipo Id.     Cliente"    /></td>           <td style=" width : 100px;"><h:outputText value="#{negRegistroAction.mcomNegocioReg.mcomPersonasByFkClientePersonas.mpaValoresByFkPersonasValoresTipoid.varNombre}" /> </td><td bgcolor="#DDE9DC" style=" width : 70px;"><h:outputText value="N° de Id. del Cliente"    /></td><td style=" width : 130px;"><h:outputText  id="mcomPersonas_" value="#{negRegistroAction.mcomNegocioReg.mcomPersonasByFkClientePersonas.id.perIdentificacion}"        />  </td></tr>
+	   <tr><td  bgcolor="#DDE9DC" ><h:outputText value=" "         /></td><td colspan="3"> <rich:message id="message_mcomPersonas"  for="mcomPersonas" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+	   <tr><td  bgcolor="#DDE9DC" style=" width : 100px;"><h:outputText value="Nombres del Cliente"    /></td> <td colspan="1"  style=" width : 30%;"><h:outputText value="#{negRegistroAction.mcomNegocioReg.mcomPersonasByFkClientePersonas.perNombres}"    /></td><td  bgcolor="#DDE9DC" style=" width : 100px;"><h:outputText value="Apellidos del Cliente"    /></td> <td colspan="1"><h:outputText value="#{negRegistroAction.mcomNegocioReg.mcomPersonasByFkClientePersonas.perApellidos}"    /></td></tr>
+       <tr><td  colspan="4"  style=" width : 100px;"><h:outputText value=" "    /></td></tr>
+	   <tr><td bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value="Id Negocio"    /></td><td style=" width : 100px;"> <h:outputText  id="negId" value="#{negRegistroAction.mcomNegocioReg.negId }"     /> </td><td bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value=" "    /></td><td style=" width : 100px;"><h:outputText value=" "    /></td> </tr>
+	    <tr style="height:5px"><td colspan="4"><hr></hr></td></tr>
+			
+      </tbody>
+     </table>
+     
+   </h:form> 
+  
+  </td>
+</tr>
+<tr>
+ <td>
+  <h:form id="frmCrear" >
+		  <table align="center" border="0"   bordercolor="#FFFFFF" bgcolor="#FFFFFF"  cellpadding="2" cellspacing="2" class="styleTables" width="550px;" style=" width : 500px;" >
+			<tbody>
+		
+		    <tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="message_perPersona3"  for="mpaValoresByFkNegocioValoresRadicador" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td ><rich:message id="message_negFechaDatacredito"  for="negFechaDatacredito" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Nombre del Radicador " /></td><td colspan="1"> <rich:comboBox  id="mpaValoresByFkNegocioValoresRadicador"  value="#{negRegistroAction.mcomNegocioReg.mpaValoresByFkNegocioValoresRadicador}"       converter="#{listasAction.converterTipoRadicador}" requiredMessage="Seleccione un radicador" label="Persona"    defaultLabel="Seleccione un radicador"> <s:selectItems     value="#{listasAction.tipoRadicador}"       var="m" label="#{m.varNombre}"   /></rich:comboBox></td><td bgcolor="#DDE9DC"><h:outputText value="Fecha datacredito" /></td><td colspan="1"> <rich:calendar  id="negFechaDatacredito" value="#{negRegistroAction.mcomNegocioReg.negFechaDatacredito}"    size="17" maxlength="15"   datePattern="dd/MM/yyyy  hh:mm a" event="onblur"  style="width: 12px;height: 12px;" />  </td></tr>
+		 
+		 
+		    <tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="message_negFechaDocumentos1"  for="negFechaDocumentos1" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td ><rich:message id="message_negFechaRecepcion1"  for="negFechaRecepcion1" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Fecha Documentos 1" /></td><td colspan="1">   <rich:calendar  id="negFechaDocumentos1" value="#{negRegistroAction.mcomNegocioReg.negFechaDocumentos1}"        datePattern="dd/MM/yyyy  hh:mm a" event="onblur"  style="width: 12px;height: 12px;" /> </td><td bgcolor="#DDE9DC" ><h:outputText value="Fecha Recepción1" /></td><td colspan="1"> <rich:calendar  id="negFechaRecepcion1" value="#{negRegistroAction.mcomNegocioReg.negFechaRecepcion1}"    size="17" maxlength="15"  datePattern="dd/MM/yyyy  hh:mm a" event="onblur"  style="width: 12px;height: 12px;" />  </td></tr>
+		
+			<tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="message_negFechaRiesgo"  for="negFechaRiesgo" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td><td bgcolor="#DDE9DC"><h:outputText value=" " /></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Fecha Crédito" /></td><td colspan="1"><rich:calendar id="negFechaRiesgo" value="#{negRegistroAction.mcomNegocioReg.negFechaRiesgo}" required="true"  datePattern="dd/MM/yyyy  hh:mm a" event="onblur"  style="width: 12px;height: 12px;" /> </td><td bgcolor="#DDE9DC"><h:outputText value=" " /></td></tr>
+		  
+		    <tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="message_negObservaciones"  for="negObservaciones" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Observaciones" /></td><td colspan="3"> <h:inputTextarea  id="negObservaciones"    value="#{negRegistroAction.mcomNegocioReg.negObservaciones}"   style=" width : 417px; height : 38px;"><f:validateLength maximum="50"/><a:support event="onblur" /></h:inputTextarea></td></tr>
+		  
+		    
+		
+		  
+			<tr style="height:5px"><td colspan="4"><hr></hr></td></tr>
+			<tr><td align="center" colspan="4"><h:messages id="errors" globalOnly="true"      styleClass="errors"  /></td></tr>
+			<tr><td  colspan="4" style="text-align: center;"><s:link  id="voverLista" view="/pages/negocio/negocio/negRegistro.xhtml"      ><h:graphicImage value="/img/imgIcon/arrow_left.png" /><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">volver</span></rich:toolTip></s:link>&#160;&#160;<h:commandButton value="Actualizar"   action="#{negRegistroAction.guardar}"  image="/img/imgIcon/disc.png" rendered="#{negBuscarAction.permisoActualizar}" ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom;color:BLACK;" ><span  style="white-space:nowrap;color:BLACK;">Registrar</span></rich:toolTip></h:commandButton>&#160;<s:link  action="#{negRegistroAction.nuevo()}"  rendered="#{negBuscarAction.permisoActualizar}"  > <h:graphicImage value="/img/imgIcon/file.png" /><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Nuevo Negocio</span></rich:toolTip></s:link>&#160;  </td></tr>
+			
+		</tbody>
+		</table>
+	 </h:form> 
+    
+    </td>
+   </tr>
+  </table>	
+ </body>       
+</html>

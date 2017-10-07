@@ -1,0 +1,352 @@
+package com.leasing.popular.wf.modulos.seguridad.login;
+
+	
+	
+	
+	import static org.jboss.seam.ScopeType.APPLICATION;
+	   
+	   import java.io.IOException;
+	   
+	   import javax.security.auth.login.LoginException;
+	   import javax.servlet.FilterChain;
+	   import javax.servlet.ServletException;
+	   import javax.servlet.ServletRequest;
+	   import javax.servlet.ServletResponse;
+	   import javax.servlet.http.HttpServletRequest;
+	   import javax.servlet.http.HttpServletResponse;
+	   
+	   import org.jboss.seam.Seam;
+	   import org.jboss.seam.annotations.Install;
+	   import org.jboss.seam.annotations.Logger;
+	   import org.jboss.seam.annotations.Name;
+	   import org.jboss.seam.annotations.Scope;
+	   import org.jboss.seam.annotations.intercept.BypassInterceptors;
+	   import org.jboss.seam.annotations.web.Filter;
+	   import org.jboss.seam.log.Log;
+	   import org.jboss.seam.security.Identity;
+	   import org.jboss.seam.security.NotLoggedInException;
+	   import org.jboss.seam.servlet.ContextualHttpServletRequest;
+	   import org.jboss.seam.util.Base64;
+	   import org.jboss.seam.web.AuthenticationFilter;
+	   
+	   /**
+	    * Fix bug in the Seam AuthenticationFilter when handling the BASIC HTTP 
+	authentication.
+	    * 
+	    * Overwrites the BUILT_IN component with the same name.
+	    * 
+	    * @author Alan Feng
+	    */
+	   
+	   @Scope(APPLICATION)
+	   @Name("org.jboss.seam.web.authenticationFilter")
+	   @Install(precedence = Install.APPLICATION)
+	   @BypassInterceptors
+	   @Filter(within = "org.jboss.seam.web.exceptionFilter")
+	   
+	   public class AuthenticaitonFilterFix extends AuthenticationFilter {
+	   
+	       private static final String AUTH_TYPE_BASIC = "basic";
+	   
+	       @Logger
+	       private Log log;
+	   
+	       @Override
+	       public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException,
+	               ServletException {
+	           if (!(request instanceof HttpServletRequest)) {
+	               throw new ServletException("This filter can only process HttpServletRequest requests");
+	           }
+	   
+	           HttpServletRequest httpRequest = (HttpServletRequest) request;
+	           HttpServletResponse httpResponse = (HttpServletResponse) response;
+	   /*
+	           if (AUTH_TYPE_BASIC.equals(getAuthType()))
+	               processBasicAuthFix(httpRequest, httpResponse, chain); // invoke the fix
+	           else*/
+	              // super.doFilter(request, response, chain);
+	               chain.doFilter(request, response);
+                   return;
+	       }
+	   
+	       /**
+	        * Fixes the bug that does not resolve the Identity object properly, 
+	which causes the NPE.
+	        * 
+	        * @param request
+	        * @param response
+	        * @param chain
+	        * @throws IOException
+	        * @throws ServletException
+	        */
+	       private void processBasicAuthFix(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+	               throws IOException, ServletException {
+	           final Identity identity = (Identity) request.getSession().getAttribute(Seam.getComponentName(Identity.class));
+	    
+	           boolean requireAuth = false;
+	   
+	           String header = request.getHeader("Authorization");
+	           if (header != null && header.startsWith("Basic ")) {
+	               String base64Token = header.substring(6);
+	               String token = new String(Base64.decode(base64Token));
+	   
+	               String username = "";
+	               String password = "";
+	               int delim = token.indexOf(":");
+	   
+	               if (delim != -1) {
+	                   username = token.substring(0, delim);
+	                   password = token.substring(delim + 1);
+	               }
+	   
+	               // Only reauthenticate if username doesn't match Identity.username and user isn't
+	               // authenticated
+	               if (!username.equals(identity.getUsername()) || !identity.isLoggedIn()) {
+	                   identity.setUsername(username);
+	                   identity.setPassword(password);
+	   
+	                   // HERE we are invoking the authentication, which does JAAS login
+	                   try {
+	                       new ContextualHttpServletRequest(request) {
+	                           @Override
+	                           public void process() throws ServletException, IOException, LoginException {
+	                               identity.authenticate();
+	                           }
+	                       }.run();
+	                   } catch (Exception ex) {
+	                       log.error("Error authenticating: " + ex.getMessage());
+	                       requireAuth = true;
+	                   }
+	    
+	              }
+	           }
+	   
+	           if (!identity.isLoggedIn() ) {
+	               requireAuth = true;
+	           }
+	   
+	           try {
+	               if (!requireAuth ) {
+	                   chain.doFilter(request, response);
+	                   return;
+	               }
+	           } catch (NotLoggedInException ex) {
+	               requireAuth = true;
+	           }
+	   
+	          if (requireAuth && !identity.isLoggedIn()) {
+	               response.addHeader("WWW-Authenticate", "Basic realm=\"" + 	getRealm() + "\"");
+	               response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Not authorized");
+         }
+     }
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+ /*
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	
+		if (!(request instanceof HttpServletRequest)) {
+			throw new ServletException("This filter can only process HttpServletRequest requests");
+		}
+	
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		HttpServletResponse httpResponse = (HttpServletResponse) response;
+		
+		String username="";
+		String auth = httpRequest.getHeader("Authorization");
+		//System.out.println("auth " + auth);
+		if (auth == null)
+		{
+			httpResponse.setStatus(httpResponse.SC_UNAUTHORIZED);
+			httpResponse.setHeader("WWW-Authenticate", "NTLM");
+			httpResponse.flushBuffer();
+			return;
+		}
+		if (AUTH_TYPE_BASIC.equals(getAuthType()))
+			processBasicAuthFix(httpRequest, httpResponse, chain); // invoke the fix
+		else
+			super.doFilter(request, response, chain);
+		if (auth.startsWith("NTLM "))
+		{//processBasicAuthFix(httpRequest, httpResponse, chain);
+
+			byte[] msg = new sun.misc.BASE64Decoder().decodeBuffer(auth.substring(5));
+			int off = 0, length, offset;
+			if (msg[8] == 1)
+			{
+				byte z = 0;
+				byte[] msg1 = {(byte)'N', (byte)'T', (byte)'L', (byte)'M', (byte)'S', (byte)'S', (byte)'P', 
+						z,(byte)2, z, z, z, z, z, z, z,(byte)40, z, z, z, 
+						(byte)1, (byte)130, z, z,z, (byte)2, (byte)2,
+						(byte)2, z, z, z, z, z, z, z, z, z, z, z, z};
+				httpResponse.setHeader("WWW-Authenticate", "NTLM " + new sun.misc.BASE64Encoder().encodeBuffer(msg1));
+				httpResponse.sendError(httpResponse.SC_UNAUTHORIZED);
+				return;
+			}
+			else if (msg[8] == 3)
+			{//processBasicAuthFix(httpRequest, httpResponse, chain);
+
+				off = 30;
+
+				length = msg[off+17]*256 + msg[off+16];
+				offset = msg[off+19]*256 + msg[off+18];
+				String remoteHost = new String(msg, offset, length);
+
+				length = msg[off+1]*256 + msg[off];
+				offset = msg[off+3]*256 + msg[off+2];
+				String domain = new String(msg, offset, length);
+
+				length = msg[off+9]*256 + msg[off+8];
+				offset = msg[off+11]*256 + msg[off+10];
+				username = new String(msg, offset, length);
+
+
+			
+				int dos =0;
+				String tres ="";
+				
+				username  = getAscii(username);
+				remoteHost  = getAscii(remoteHost);
+				domain  = getAscii(domain);
+				
+				final Identity identity = (Identity) httpRequest.getSession().getAttribute(Seam.getComponentName(Identity.class));	 
+				identity.setUsername(username);
+				System.out.println("Username:"+username);
+				System.out.println("RemoteHost:+"+remoteHost);
+				System.out.println("Domain:"+domain);
+				
+				 
+				
+
+			}
+			
+		}
+		//chain.doFilter(httpRequest, httpResponse);
+		return;
+	}*/
+	/**
+	 * Fixes the bug that does not resolve the Identity object properly, 
+which causes the NPE.
+	 * 
+	 * @param request
+	 * @param response
+	 * @param chain
+	 * @throws IOException
+	 * @throws ServletException
+	 */
+	/*private void processBasicAuthFix(HttpServletRequest request, 	HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
+
+
+		final Identity identity = (Identity) request.getSession().getAttribute(Seam.getComponentName(Identity.class));
+
+		boolean requireAuth = false;
+
+		String header = request.getHeader("Authorization");
+		if (header != null && header.startsWith("Basic ")) {
+			String base64Token = header.substring(6);
+			String token = new String(Base64.decode(base64Token));
+
+			String username = "";
+			String password = "";
+			int delim = token.indexOf(":");
+
+			if (delim != -1) {
+				username = token.substring(0, delim);
+				password = token.substring(delim + 1);
+				System.out.println("token + " + token);
+			}
+
+			// Only reauthenticate if username doesn't match Identity.username and user isn't
+			// authenticated
+			if (!username.equals(identity.getUsername()) || 
+					!identity.isLoggedIn()) {
+				identity.setUsername(username);
+				identity.setPassword(password);
+
+				// HERE we are invoking the authentication, which does JAAS login
+				try {
+					new ContextualHttpServletRequest(request) {
+						@Override
+						public void process() throws ServletException, IOException, LoginException {
+							identity.authenticate();
+						}
+					}.run();
+				} catch (Exception ex) {
+					log.error("Error authenticating: " + ex.getMessage());
+					requireAuth = true;
+				}
+
+			}
+		}
+
+		if (!identity.isLoggedIn() && !identity.isLoggedIn()) {
+			requireAuth = true;
+		}
+
+		try {
+			if (requireAuth) {
+				chain.doFilter(request, response);
+				return;
+			}
+		} catch (NotLoggedInException ex) {
+			requireAuth = true;
+		}
+
+		if (!requireAuth && !identity.isLoggedIn()) {
+			System.out.println("Entro a ERROR ");
+			response.addHeader("WWW-Authenticate", "Basic realm=\"" + getRealm() + "\"");
+			response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Not authorized");
+		}
+	}
+
+	
+	
+	
+	public String getAscii(String str){
+		int char_ = 0; 
+		String strn = "";
+		for (int i = 0; i < str.length(); i++) {
+			try{
+				char_ =(int)str.charAt(i);
+				if(char_ > 0){
+					strn += Character.toString((char)char_);
+				}
+			}catch (Exception e) {
+				System.out.println(e.getMessage());
+			}
+		}
+		return strn.toUpperCase();
+	}
+	*/
+	
+}

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pages login-view-id="/pages/seguridad/login/login.xhtml"
+	no-conversation-view-id="/pages/templates/errors/generalError.xhtml"
+	xmlns="http://jboss.com/products/seam/pages" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jboss.com/products/seam/pages http://jboss.com/products/seam/pages-2.1.xsd">
+	<page scheme="http" view-id="*" />
+	<!--
+		<page view-id="/pages/seguridad/login/login.xhtml" > <navigation
+		evaluate="#{authenticator.authenticate2}"> <rule
+		if-outcome="unoAcceso"> <redirect
+		view-id="/pages/seguridad/inicio.xhtml"/> </rule> <rule
+		if-outcome="masAccesos"> <redirect
+		view-id="/pages/seguridad/acesos/acesos.xhtml"/> </rule> <rule
+		if-outcome="noLogin"> <redirect
+		view-id="/pages/seguridad/login/login.xhtml" /> </rule> </navigation>
+		</page>
+	-->
+
+
+	<page login-required="true"  action="#{accesosAction.acceso()}" view-id="/pages/seguridad/login/inicio2.xhtml">
+		<navigation>
+			<rule if-outcome="tres">
+				<redirect view-id="/pages/seguridad/inicio.xhtml" />
+			</rule>
+			<rule if-outcome="dos">
+				<redirect view-id="/pages/seguridad/accesos/accesos.xhtml" />
+			</rule>
+		</navigation>
+	</page>
+
+
+	<page view-id="/pages/seguridad/login/login.xhtml">
+		<navigation>
+			<rule if="#{identity.loggedIn}">
+				<redirect view-id="/pages/seguridad/login/inicio2.xhtml" />
+			</rule>
+		</navigation>
+	</page>
+
+
+	<page login-required="true"  view-id="/pages/seguridad/accesos/accesos.xhtml">
+		<navigation from-action="#{accesosAction.accesoRol}">
+			<redirect view-id="/pages/seguridad/inicio.xhtml" />
+		</navigation>
+	</page>
+
+
+
+ 
+	<page  login-required="true" view-id="/pages/seguridad/inicio.xhtml">
+		<navigation from-action="#{identity.logout}">
+			<redirect view-id="/pages/seguridad/login/login.xhtml" />
+		</navigation>
+	</page>
+ 
+	<!-- Seguridad:Usuario -->
+	<page view-id="/pages/seguridad/usuario/usuCrear.xhtml">
+		<navigation>
+			<rule if="#{usuarioRegistroAction.registered}">
+				<redirect />
+			</rule>
+		</navigation>
+	</page>
+	<page view-id="/pages/seguridad/usuario/usuEditar.xhtml">
+		<action execute="#{usuarioEditarAction.invalid}" if="#{validation.failed}" />
+		<navigation from-action="#{usuarioEditarAction.updateUsuario}">
+			<redirect view-id="/pages/seguridad/usuario/usuEditar.xhtml" />
+		</navigation>
+	</page>
+	<page view-id="/pages/seguridad/usuario/usuLista.xhtml">
+		<navigation from-action="#{usuarioEditarAction.seleccionUsuario(hot)}">
+			<redirect view-id="/pages/seguridad/usuario/usuEditar.xhtml" />
+		</navigation>
+	</page>
+	<!-- /Seguridad:Usuario
+ Seguridad:Rol -->
+	<page view-id="/pages/seguridad/rol/rolCrear.xhtml">
+		<navigation>
+			<rule if="#{rolRegistroAction.registered}">
+				<redirect />
+			</rule>
+		</navigation>
+	</page>
+	<page view-id="/pages/seguridad/rol/rolEditar.xhtml">
+		<action execute="#{usuarioEditarAction.invalid}" if="#{validation.failed}" />
+		<navigation from-action="#{rolEditarAction.update}">
+			<redirect view-id="/pages/seguridad/rol/rolEditar.xhtml" />
+		</navigation>
+	</page>
+	<page view-id="/pages/seguridad/rol/rolLista.xhtml">
+		<navigation from-action="#{rolEditarAction.seleccionRol(hotRol)}">
+			<redirect view-id="/pages/seguridad/rol/rolEditar.xhtml" />
+		</navigation>
+		<navigation from-action="#{rolBuscarAction.eliminarRol()}">
+			<redirect view-id="/pages/seguridad/rol/rolLista.xhtml" />
+		</navigation>
+
+	</page>
+	<!-- /Seguridad:Rol 
+ Parametros:Parametro-->
+	<page view-id="/pages/parametros/parametro/parLista.xhtml">
+		<navigation from-action="#{parametroEditarAction.seleccionMpaParametro(hotPar)}">
+			<redirect view-id="/pages/parametros/parametro/parEditar.xhtml" />
+		</navigation>
+
+		<navigation from-action="#{parametroBuscarAction.eliminarParametro()}">
+			<redirect view-id="/pages/parametros/parametro/parLista.xhtml" />
+		</navigation>
+
+	</page>
+
+	<page view-id="/pages/parametros/parametro/parEditar.xhtml">
+		<navigation from-action="#{parametroBuscarAction.find()}">
+			<redirect view-id="/pages/parametros/parametro/parLista.xhtml" />
+		</navigation>
+
+	</page>
+
+	<!-- /Parametros:Parametro-->
+	<!--  Parametros:Valores-->
+	<page view-id="/pages/parametros/valores/varLista.xhtml">
+		<navigation from-action="#{valoresEditarAction.seleccionMpaValores(hotVar)}">
+			<redirect view-id="/pages/parametros/valores/varEditar.xhtml" />
+		</navigation>
+		<navigation from-action='#{valoresBuscarAction.eliminarValor}'>
+			<redirect view-id="/pages/parametros/valores/varLista.xhtml" />
+		</navigation>
+		<navigation from-action="#{valoresRegistroAction.guardarValor()}">
+			<redirect view-id="/pages/parametros/valores/varLista.xhtml" />
+		</navigation>
+	</page>
+
+	<page view-id="/pages/parametros/valores/varEditar.xhtml">
+		<navigation from-action="#{valoresBuscarAction.find() }">
+			<redirect view-id="/pages/parametros/valores/varLista.xhtml" />
+		</navigation>
+	</page>
+
+	<!-- /Parametros:Valores-->
+
+
+	<!-- Negocio:Persona-->
+	<page view-id="/pages/negocio/persona/perLista.xhtml">
+		<navigation from-action="#{perRegistroAction.nuevo()}">
+			<redirect view-id="/pages/negocio/persona/perRegistro.xhtml" />
+		</navigation>
+		<navigation from-action="#{perRegistroAction.seleccionPersona(hotPer)}">
+			<redirect view-id="/pages/negocio/persona/perRegistro.xhtml" />
+		</navigation>
+	</page>
+
+	<!-- Negocio:Negocio-->
+	<page view-id="/pages/negocio/negocio/negLista.xhtml">
+		<navigation from-action="#{negRegistroAction.nuevo()}">
+			<redirect view-id="/pages/negocio/negocio/negRegistro.xhtml" />
+		</navigation>
+		<navigation from-action="#{negRegistroAction.seleccionNegocio(hotNeg)}">
+			<redirect view-id="/pages/negocio/negocio/negRegistro.xhtml" />
+		</navigation>
+		<navigation from-action="#{negBuscarAction.find()}">
+			<redirect view-id="/pages/negocio/negocio/negLista.xhtml" />
+		</navigation>
+	</page>
+
+
+	<page view-id="/pages/negocio/negocio/negRegistro.xhtml">
+		<navigation from-action="#{negRegistroAction.siguiente()}">
+			<rule if-outcome="NO">
+				<redirect view-id="/pages/negocio/negocio/negRegistro.xhtml" />
+			</rule>
+			<rule if-outcome="OK">
+				<redirect view-id="/pages/negocio/negocio/negRegistro2.xhtml" />
+			</rule>
+
+		</navigation>
+	</page>
+
+	<!-- Negocio:Estudio-->
+	<page view-id="/pages/negocio/estudio/estLista.xhtml">
+		<navigation from-action="#{estRegistroAction.nuevo()}">
+			<redirect view-id="/pages/negocio/estudio/estRegistro.xhtml" />
+		</navigation>
+		<navigation from-action="#{estRegistroAction.seleccionEstudio(hotEst)}">
+			<redirect view-id="/pages/negocio/estudio/estRegistro.xhtml" />
+		</navigation>
+		<navigation from-action="#{estBuscarAction.find()}">
+			<redirect view-id="/pages/negocio/estudio/estLista.xhtml" />
+		</navigation>
+	</page>
+
+	<page view-id="/pages/negocio/estudio/estRegistro.xhtml">
+		<navigation from-action="#{estRegistroAction.siguiente()}">
+			<rule if-outcome="NO">
+				<redirect view-id="/pages/negocio/estudio/estRegistro.xhtml" />
+			</rule>
+			<rule if-outcome="OK">
+				<redirect view-id="/pages/negocio/estudio/estRegistro2.xhtml" />
+			</rule>
+		</navigation>
+	</page>
+
+
+	<page view-id="/pages/parametros/status/staLista.xhtml">
+		<navigation from-action="#{statusRegistroAction.seleccionMoperStatus(hotPar)}">
+			<redirect view-id="/pages/parametros/status/staEditar.xhtml" />
+		</navigation>
+		<navigation from-action='#{statusBuscarAction.eliminarStatus()}' >
+			<redirect view-id="/pages/parametros/status/staLista.xhtml" />
+		</navigation>
+	</page>
+	<page view-id="/pages/parametros/status/staEditar.xhtml">
+		<navigation from-action="#{statusBuscarAction.find()}">
+			<redirect view-id="/pages/parametros/status/staLista.xhtml" />
+		</navigation>
+	</page>
+	
+	<page view-id="/pages/operaciones/operLista.xhtml">
+		<navigation from-action="#{operRegistroAction.seleccionMoperOperaciones(hotPar)}" >
+			<redirect view-id="/pages/operaciones/operRegistro.xhtml" />
+		</navigation>
+	</page>
+	
+	<page view-id="/pages/operaciones/operRegistro.xhtml">
+		<navigation from-action="#{operBuscarAction.find()}">
+			<redirect view-id="/pages/operaciones/operLista.xhtml" />
+		</navigation>
+	</page>
+	
+	
+	
+	<page view-id="/pages/operaciones/operEditar.xhtml">
+		<navigation from-action="#{operRegistroAction.guardar}">
+			<redirect view-id="/pages/operaciones/operEditar.xhtml" />
+		</navigation>
+	</page>
+	<!-- EXCEPTION -->
+
+
+	<exception class="javax.persistence.EntityNotFoundException">
+		<http-error error-code="404" />
+	</exception>
+    <exception class="org.jboss.seam.framework.EntityNotFoundException">
+         <redirect view-id="/pages/templates/errors/generalError.xhtml">
+             <message>Unexpected failure #{org.jboss.seam.handledException.message} #{org.jboss.seam.handledException.message}</message>
+         </redirect>
+    </exception>
+	<exception class="org.jboss.seam.security.NotLoggedInException">
+		<!--  <redirect view-id="/pages/seguridad/login/login.xhtml"> -->
+		<redirect view-id="/pages/seguridad/session/noSession.xhtml">
+			<message>#{viewExpiredException.message} </message>
+		</redirect>
+	</exception>
+
+	<exception class="javax.faces.application.ViewExpiredException">
+		<redirect view-id="/pages/seguridad/session/noSession.xhtml">
+			<message>Debe logearse nuevamente. #{viewExpiredException.message} </message>
+		</redirect>
+	</exception>
+
+	<exception class="javax.persistence.PersistenceException">
+		<redirect view-id="/pages/templates/errors/generalError.xhtml">
+			<message>Fallo en el acceso a la base de datos error: #{handledException.message} #{org.jboss.seam.handledException.message}</message>
+		</redirect>
+	</exception>
+
+	<exception class="org.jboss.seam.security.AuthorizationException">
+		<redirect view-id="/error.xhtml">
+			<message>You don't have security permissions</message>
+		</redirect>
+	</exception>
+
+	<exception>
+		<redirect view-id="/pages/templates/errors/generalError.xhtml">
+			<message>#{handledException.message}#{org.jboss.seam.handledException.message}</message>
+		</redirect>
+	</exception>
+
+ 
+
+</pages>

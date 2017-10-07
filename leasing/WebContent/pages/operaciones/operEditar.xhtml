@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:c="http://java.sun.com/jstl/core">
+<head>
+<link rel="stylesheet" type="text/css" href="../../css/estilosLeasing1.css"/>
+ <script type="text/javascript">
+
+function addObserv()
+ {
+ try{ 
+ 
+ 
+	   Richfaces.showModalPanel('panelObservacion',{width:420, height:170, top:100});
+	   
+ }catch(e){
+	   txt="Existe un error en esta pagina.\n\n";
+	   txt+="Error descripcion: " + e + "\n\n";
+	   txt+="Click OK(Aceptar) para continuar.\n\n";
+	   alert(txt);
+	
+	}    
+}
+</script>
+</head>
+
+    <h:form  id="frmEditar"  >   
+	 <table align="center" border="0" width="80%"  cellpadding="2" bgcolor="#FFFFFF" bordercolor="#FFFFFF"   cellspacing="2" class="styleTables" >
+	   
+	  <tr style=" height : 6px;"><td  bgcolor="#DDE9DC" colspan="4">&nbsp;</td></tr> 
+		
+	  <tr><td bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value=" " /></td><td><rich:message id="messagerol_Nombres"  for="moperStatus"  lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td><td bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value=" " /></td><td><rich:message id="message_operFechaEntrega"  for="operFechaEntrega" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>		
+	  <tr><td bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value="Status" /></td><td><rich:comboBox  id="moperStatus"  value="#{operRegistroAction.moperOperacionesReg.moperStatus}"       converter="#{listasAction.converterMoperStatus}" requiredMessage="Seleccione un status"  required="true"  defaultLabel="Seleccione un status" immediate="true" > <a:support event="onselect"     reRender="frmEditar"   ajaxSingle="true"/>   <s:selectItems     value="#{listasAction.listaMoperStatus}"       var="m" label="#{m.staNombre}"   /></rich:comboBox></td><td bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value="Fecha Recepción" /></td><td> <h:outputFormat id="operFechaEntrega"  value="{0,date,MM/dd/yyyy hh:mm:ss a}"   size="17" maxlength="15"    >  <f:param value="#{operRegistroAction.moperOperacionesReg.operFechaEntrega}" />
+	   </h:outputFormat> </td></tr>
+	  		
+	 
+	  <tr><td bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value=" " /></td><td><rich:message id="message_operSimco"  for="operSimco" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td><td bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value=" " /></td><td><rich:message id="message_mpaValores"  for="mpaValores" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+	  <tr><td bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value="N° Simco" /></td><td><h:inputText id="operSimco" value="#{operRegistroAction.moperOperacionesReg.operSimco}"    ><f:validateLength minimum="3" maximum="15"/></h:inputText> </td><td bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value="Analista de Operacionesr" /></td><td> <rich:comboBox  id="mpaValores"  value="#{operRegistroAction.moperOperacionesReg.mpaValores}"       converter="#{listasAction.converterAnalistaOper}" requiredMessage="Seleccione un analista" label="Persona" required="true"  defaultLabel="Seleccione un analista"> <s:selectItems     value="#{listasAction.analistaOper}"       var="m" label="#{m.varNombre}"   /></rich:comboBox>  </td></tr>
+	  <tr style="height:5px"><td colspan="4"><hr></hr></td></tr>
+	  <tr style="height:5px"><td colspan="4"> &#160; </td></tr> 
+	  <tr style="height:5px"><td colspan="4" align="right"> <a:commandLink    onclick="javascript:addObserv();" styleClass="link"  > Haga click aquí para adicionar Observación &#160;&#160; <h:graphicImage value="/img/imgIcon/file_add.png" />
+                <rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom">
+                 <span  style="white-space:nowrap;color:BLACK;">Crear Nueva Observación</span>
+                </rich:toolTip></a:commandLink> </td></tr>
+	   
+	  
+	  <tr><td bgcolor="#DDE9DC"><h:outputText value="Historial de Observaciones" /></td><td colspan="3"> <h:inputTextarea  id="moperObserv2"    value=" "  onkeypress="alert('Para adicionar una observación haga click en el icono')" onclick="return false;"  readonly="true" styleClass="readonlyTextArea" > </h:inputTextarea>   <h:inputHidden   id="moperObserv1"    value="#{operRegistroAction.moperObservacionesReg.obsObservaciones }"  /> </td></tr>
+	 
+	  <tr style="height:5px"><td colspan="4"><hr></hr></td></tr>
+	  <tr><td align="center" colspan="4"><h:messages id="errors" globalOnly="true"      styleClass="errors"  /></td></tr>
+	  <tr><td  colspan="4" style="text-align: center;"><h:commandButton  value="Actualizar" action="#{operRegistroAction.guardar}" image="/img/imgIcon/disc.png" rendered="#{parametroBuscarAction.permisoActualizar}"  ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Actualizar</span></rich:toolTip></h:commandButton></td></tr>	
+    </table>
+ </h:form>
+ 
+ 
+ 
+ 
+ 
+ <!-- rich:modalPanel crear -->
+  <rich:modalPanel id="panelObservacion"  resizeable="false" >
+        <f:facet name="header">
+            <h:panelGroup><h:outputText value="Adicionar Observaciones"></h:outputText></h:panelGroup>
+        </f:facet>
+        <f:facet name="controls">
+            <h:panelGroup>
+                <h:graphicImage value="/img/imgIcon/close.png" style="cursor:pointer" id="hideRollink"/>
+                <rich:componentControl for="panelObservacion" attachTo="hideRollink" operation="hide" event="onclick"/>
+            </h:panelGroup>
+        </f:facet>
+      <h:form  id="frmCrearValor" styleClass="form" >
+          <table align="center" border="0" cellpadding="2" cellspacing="2" >
+			 <tr style=" height : 6px;"><td  bgcolor="#DDE9DC" colspan="4">&nbsp;</td></tr> 
+	
+			  <tr><td><rich:message id="message_moperObserv"  for="moperObserv" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+	        <tr><td colspan="2"> <h:inputTextarea  id="moperObserv"    value="#{operRegistroAction.observ }"   style=" width : 390px; height : 38px;"><f:validateLength maximum="100"/><a:support event="onblur" /></h:inputTextarea></td></tr>
+	         
+			<tr style="height:5px"><td colspan="4"><hr></hr></td></tr>
+			<tr><td colspan="2" align="center" ><h:commandButton  value="Guardar" action="#{operRegistroAction.guardar}"   image="/img/imgIcon/disc.png" ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap">Actualizar</span></rich:toolTip></h:commandButton>&#160;  </td></tr>
+	    </table>
+      </h:form>
+     </rich:modalPanel>
+   <!-- /rich:modalPanel -->
+   
+   
+ <script type="text/javascript">
+ Observ();
+ function Observ()
+ {         
+ try{  
+        document.forms['frmEditar'].elements['frmEditar:moperObserv2'].value = document.forms['frmEditar'].elements['frmEditar:moperObserv1'].value.replace(/_ENTER_/g,'\n') ;
+ }catch(e){
+	   txt="Tenemos un error en esta pagina.\n\n";
+	   txt+="Error descripcion: " + e + "\n\n";
+	   txt+="Click OK para continuar.\n\n";
+	   alert(txt);
+	} 
+  }
+
+</script>
+</html>

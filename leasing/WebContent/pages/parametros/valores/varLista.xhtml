@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:rich="http://richfaces.org/rich">
+<head>
+<link rel="stylesheet" type="text/css" href="../../../css/estilosLeasing1.css"/>
+<script  >
+function borrarVar(varNombre,varCodigo, varNomParametro, varParametro)
+ {
+ try{ 
+ 
+ 
+	   Richfaces.showModalPanel('panelEliminarValor',{width:300, height:150, top:100});
+       document.forms['frmDeleteValor'].elements['frmDeleteValor:valoresDelete'].value = "¿Esta seguro de eliminar el valor \"" + varNombre + "\" del parametro "+ varNomParametro +"?.";
+       document.forms['frmDeleteValor'].elements['frmDeleteValor:deleteValores'].value = varCodigo + "|" + varParametro;
+ }catch(e){
+	   txt="Existe un error en esta pagina.\n\n";
+	   txt+="Error descripcion: " + e + "\n\n";
+	   txt+="Click OK(Aceptar) para continuar.\n\n";
+	   alert(txt);
+	
+	}    
+}
+
+</script>
+</head>
+<rich:panel id="content"  style="width:100%;" >
+<div class="section">
+ <span class="errors" style="text-align: center;" ><div style="text-align: center;"><h:messages id="errores"  styleClass="errors" globalOnly="true" /> </div> </span>
+ <h4>Buscar Parametros</h4>
+  <h:form  id="buscarParametro" styleClass="form" >
+  	
+    <fieldset> 
+	  <table>
+	  <tr>
+	  <td> 
+	  Parametros
+	 </td>
+	 <td>   
+	    <rich:comboBox  id="searchStringP"  value="#{valoresBuscarAction.searchStringP}"  reRender="searchResults"    converter="#{valoresBuscarAction.converter}" requiredMessage="Seleccione un tipo de parametro" label="TipoParametro" immediate="true">    	
+    	<a:support event="onselect"  actionListener="#{valoresBuscarAction.find}" reRender="searchResults"    ajaxSingle="true"/>
+                <s:selectItems     value="#{valoresBuscarAction.listaParametroValores}"       var="m" label="#{m.parNombre}"   />
+       </rich:comboBox>
+	 </td>
+	 <td>&#160;&#160;
+	   Valores
+	  </td>
+	  <td>
+	   <h:inputText id="searchString" value="#{valoresBuscarAction.searchString}" style=" width : 130px;">
+         <a:support event="onkeyup" actionListener="#{valoresBuscarAction.find}" reRender="searchResults" />
+       </h:inputText>
+      </td>
+       <td>
+       &#160;
+	   <a:commandButton id="findParametros" value="Buscar" action="#{valoresBuscarAction.find}" reRender="searchResults"  image="/img/imgIcon/search.png" />
+       &#160;
+       </td>
+       <td width="30">
+       <a:status>
+          <f:facet name="start">
+             <h:graphicImage value="/img/imgIcon/spinner.gif"  />
+          </f:facet>
+       </a:status>
+        </td>
+        </tr>
+       </table>
+	   <br/>
+       <table width="100%">
+        <tr>
+         <td>
+         <h:outputLabel for="pageSize">Registros por p&aacute;gina:</h:outputLabel>&#160;
+         <h:selectOneMenu value="#{valoresBuscarAction.pageSize}" id="pageSize">
+           <f:selectItem itemLabel="5" itemValue="5"/>
+           <f:selectItem itemLabel="10" itemValue="10"/>
+           <f:selectItem itemLabel="20" itemValue="20"/>
+          </h:selectOneMenu>
+          
+          </td>
+          <td align="right">
+             
+		      <a:commandLink onclick="Richfaces.showModalPanel('panelCrearValor',{width:350, height:150,  top:100});"  rendered="#{parametroBuscarAction.permisoInsertar}"  >
+			  <h:graphicImage value="/img/imgIcon/file_add.png" />
+                <rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom">
+                 <span  style="white-space:nowrap;color:BLACK;">Crear Variable</span>
+                </rich:toolTip>
+		     </a:commandLink>
+		 &#160; &#160;	
+          </td>
+          </tr>
+       </table>
+    </fieldset>
+     
+  </h:form>
+</div>
+
+<a:outputPanel id="searchResults" rendered="true" >
+
+  <div class="section">
+  <h:outputText  value="No existen Valores" rendered="#{listaValores != null and listaValores.rowCount==0}"/>
+   <rich:dataTable id="listaValores2" value="#{listaValores}" var="hotVar" rendered="#{listaValores.rowCount>0}">
+    
+      <h:column>
+	  <f:facet name="header"><h:outputText value="Tipo" /></f:facet>
+	  #{hotVar.mpaParametro.parNombre}
+	  </h:column>
+	
+	
+      
+      <h:column>
+	  <f:facet name="header"><h:outputText value="Nombre" /></f:facet>
+	   #{hotVar.varNombre}
+	  </h:column>
+	 
+ 	  <h:column>
+	    <f:facet name="header"><h:outputText value="  " /></f:facet>
+	      <div align="center" >
+	        <s:link  id="VerParametro"   action="#{valoresEditarAction.seleccionMpaValores(hotVar)}"  rendered="#{parametroBuscarAction.permisoConsulta}"  >
+			  <h:graphicImage value="/img/imgIcon/file_edit.png" />
+               <rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom">
+                 <span  style="white-space:nowrap;color:BLACK;">Editar</span>
+               </rich:toolTip>
+            </s:link>
+            <h:graphicImage value="/img/imgIcon/whites.png" />
+            
+               <a:commandLink    onclick="javascript:borrarVar('#{hotVar.varNombre}','#{hotVar.id.varCodigo}','#{hotVar.mpaParametro.parNombre}','#{hotVar.mpaParametro.parCodigo}')"  rendered="#{parametroBuscarAction.permisoEliminar}"    >
+			   
+			  <h:graphicImage value="/img/imgIcon/trash.png" />
+                <rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom">
+                 <span  style="white-space:nowrap;color:BLACK;">Eliminar</span>
+                </rich:toolTip>
+		     </a:commandLink>
+	        </div>
+		   </h:column> 
+		  <f:facet name="footer">
+         <h:outputText value="Valores" />
+       </f:facet>    
+      </rich:dataTable> 
+	 </div>
+	  <div align="center"> <h:form id="frmPaginacion" ><a:commandButton   id="First"  reRender="searchResults" action="#{valoresBuscarAction.firstPage()}"  rendered="#{valoresBuscarAction.page > 0 }" image="/img/imgIcon/p_first.png" ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Primero Página</span></rich:toolTip> </a:commandButton>&#160;<a:commandButton   id="Prev"  reRender="searchResults" action="#{valoresBuscarAction.backPage()}"  rendered="#{valoresBuscarAction.page > 0 }" image="/img/imgIcon/p_prev.png" ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Atras</span></rich:toolTip> </a:commandButton>&#160; <h:outputLabel value="Página #{valoresBuscarAction.page + 1} de #{valoresBuscarAction.queryCantidadTotal} "  rendered="#{valoresBuscarAction.queryCantidadTotal > 1  }" />&#160; <a:commandButton    id="Nex" action="#{valoresBuscarAction.nextPage()}" reRender="searchResults"   rendered="#{valoresBuscarAction.queryCantidadTotal > 1 and  valoresBuscarAction.queryCantidadTotal != valoresBuscarAction.page + 1}"   image="/img/imgIcon/p_next.png"  ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Siguiente</span></rich:toolTip></a:commandButton>&#160; <a:commandButton    id="Last" action="#{valoresBuscarAction.lastPage()}" reRender="searchResults"   rendered="#{valoresBuscarAction.queryCantidadTotal > 1 and  valoresBuscarAction.queryCantidadTotal != valoresBuscarAction.page + 1}"   image="/img/imgIcon/p_last.png"  ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Última página</span></rich:toolTip></a:commandButton></h:form> </div>   
+	
+ </a:outputPanel>
+
+ 
+ 
+   
+     </rich:panel>
+   
+ 
+   
+
+  <!-- rich:modalPanel -->
+  <rich:modalPanel id="panelEliminarValor"   >
+        <f:facet name="header">
+            <h:panelGroup>
+                <h:outputText value="Confirmar eliminar Parametros"></h:outputText>
+            </h:panelGroup>
+        </f:facet>
+        <f:facet name="controls">
+            <h:panelGroup>
+                <h:graphicImage value="/img/imgIcon/close.png" style="cursor:pointer" id="hidelink"/>
+                <rich:componentControl for="panelEliminarValor" attachTo="hidelink" operation="hide" event="onclick"/>
+            </h:panelGroup>
+        </f:facet>
+        <h:form  id="frmDeleteValor"   >
+        <div align="center">
+         <table>
+           <tr><td align="center">
+                <h:graphicImage value="/img/imgIcon/info.png" /></td><td align="center"><h:inputTextarea    id="valoresDelete" cols="30" rows="4"   style="border:none;background: #FFFFFF; width: 200px; color: black;" readonly="true" /></td></tr>
+         </table>        
+        </div>
+        <div>
+       
+        <h:inputHidden   id="deleteValores" value="#{valoresBuscarAction.deleteValores}"  /></div>
+        <div align="center">   
+        <a:commandButton id="delete2" value="Si" action='#{valoresBuscarAction.eliminarValor}'  reRender="searchResults" styleClass="button"  >
+          <rich:componentControl for="panelEliminarValor" attachTo="delete2" operation="hide" event="onclick"/>
+         </a:commandButton>
+         &#160;&#160;
+         <a:commandButton id="delete" value="No"  action="#{parametroBuscarAction.find}" reRender="searchResults" styleClass="button" >
+           <rich:componentControl for="panelEliminarValor" attachTo="delete" operation="hide" event="onclick"/>
+        </a:commandButton>
+       </div>
+     </h:form>
+     </rich:modalPanel>
+   <!-- /rich:modalPanel -->
+   
+  
+   
+ 
+ 
+ 
+ <!-- rich:modalPanel crear -->
+  <rich:modalPanel id="panelCrearValor"  resizeable="false" >
+        <f:facet name="header">
+            <h:panelGroup><h:outputText value="Crear Valores"></h:outputText></h:panelGroup>
+        </f:facet>
+        <f:facet name="controls">
+            <h:panelGroup>
+                <h:graphicImage value="/img/imgIcon/close.png" style="cursor:pointer" id="hideRollink"/>
+                <rich:componentControl for="panelCrearValor" attachTo="hideRollink" operation="hide" event="onclick"/>
+            </h:panelGroup>
+        </f:facet>
+      <h:form  id="frmCrearValor" styleClass="form" >
+          <table align="center" border="0" cellpadding="2" cellspacing="2" >
+			 <tr style=" height : 6px;"><td  bgcolor="#DDE9DC" colspan="4">&nbsp;</td></tr> 
+	
+			<tr><td bgcolor="#DDE9DC" style=" width : 100px;"><h:outputText value=" "         /></td><td> <rich:message id="valoresNombreM"  for="valoresNombre" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC" ><h:outputText value="Nombre"      /></td><td> <h:inputText  id="valoresNombre" value="#{valoresRegistroAction.mpaValoresReg.varNombre}"  size="31" maxlength="30"  required="true"   ></h:inputText></td></tr>
+			<tr><td bgcolor="#DDE9DC" ><h:outputText value=" "         /></td><td> <rich:message id="mpaParametrom"  for="mpaParametro" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC" ><h:outputText value="Parametro"    /></td><td>
+			  <rich:comboBox  id="mpaParametro"  value="#{valoresRegistroAction.mpaValoresReg.mpaParametro}"       converter="#{valoresRegistroAction.converter}" requiredMessage="Seleccione un parametro" label="TipoParametro" required="false"  defaultLabel="Seleccione un parametro">
+                <s:selectItems     value="#{valoresRegistroAction.listaParametros}"       var="m" label="#{m.parNombre}"   />
+               </rich:comboBox>
+			</td></tr>
+			<tr style="height:5px"><td colspan="4"><hr></hr></td></tr>
+			<tr><td  colspan="4" style="text-align: center;"><s:link  id="voverLista"  view="/pages/parametros/valores/varLista.xhtml"    ><h:graphicImage value="/img/imgIcon/arrow_left.png" style=" width : 16px;"/><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap">volver</span></rich:toolTip></s:link>&#160;&#160;<h:commandButton  value="Guardar" action="#{valoresRegistroAction.guardarValor()}" image="/img/imgIcon/disc.png" ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap">Actualizar</span></rich:toolTip></h:commandButton>&#160;  </td></tr>
+	    </table>
+      </h:form>
+     </rich:modalPanel>
+   <!-- /rich:modalPanel -->
+
+</html>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:rich="http://richfaces.org/rich">
+<head>
+<link rel="stylesheet" type="text/css" href="../../../css/estilosLeasing1.css"/>
+<script type="text/javascript">
+ function borrarPar(parNombre, parCodigo)
+ {        
+ try{
+        Richfaces.showModalPanel('panelEliminar',{width:300, height:150, top:100});
+        document.forms['frmDelete'].elements['frmDelete:statusDelete'].value = "¿Esta seguro de eliminar el status \"" + parNombre + "\"?.";
+        document.forms['frmDelete'].elements['frmDelete:deleteStatus'].value = parCodigo;
+ }catch(e){
+	   txt="Tenemos un error en esta pagina.\n\n";
+	   txt+="Error descripcion: " + err + "\n\n";
+	   txt+="Click OK para continuar.\n\n";
+	   alert(txt);
+	} 
+  }
+
+</script>
+</head>
+<rich:panel id="content"  style="width:100%;" >
+<div class="section">
+ <span class="errors" style="text-align: center;" ><div style="text-align: center;"><h:messages id="errores"  styleClass="errors" globalOnly="true"/></div> </span>
+ <h5>Buscar  Status</h5>
+  <h:form  id="buscarPar" styleClass="form" >
+  	
+    <fieldset> 
+	   <h:inputText id="searchString" value="#{statusBuscarAction.searchString}" style="width: 165px;">
+         <a:support event="onkeyup" actionListener="#{statusBuscarAction.find}" reRender="searchResults" />
+       </h:inputText>
+       &#160;
+	   <a:commandButton id="findstatuss" value="Buscar" action="#{statusBuscarAction.find}" reRender="searchResults"  image="/img/imgIcon/search.png" />
+       &#160;
+       <a:status>
+          <f:facet name="start">
+             <h:graphicImage value="/img/imgIcon/spinner.gif"  />
+          </f:facet>
+       </a:status>
+	   <br/>
+       <table width="100%">
+        <tr>
+         <td>
+         <h:outputLabel for="pageSize">Maxima cantidad de  .Resultados:</h:outputLabel>&#160;
+         <h:selectOneMenu value="#{statusBuscarAction.pageSize}" id="pageSize">
+           <f:selectItem itemLabel="5" itemValue="5"/>
+           <f:selectItem itemLabel="10" itemValue="10"/>
+           <f:selectItem itemLabel="20" itemValue="20"/>
+          </h:selectOneMenu>
+          </td>
+          <td align="right">
+            <a:commandLink onclick="Richfaces.showModalPanel('panelCrear',{width:300, height:120,  top:100});" rendered="#{statusBuscarAction.permisoInsertar}"  >
+			  <h:graphicImage value="/img/imgIcon/file_add.png" />
+                <rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom">
+                 <span  style="white-space:nowrap;color:BLACK;">Crear status</span>
+                </rich:toolTip>
+		     </a:commandLink>
+		 &#160; &#160;	
+          </td>
+          </tr>
+       </table>
+    </fieldset>
+ </h:form>
+</div>
+
+
+
+  
+       
+<a:outputPanel id="searchResults" rendered="true" >
+  <div class="section" align="center">
+  <h:outputText  value="No existen status" rendered="#{listaStatus== null or listaStatus.rowCount==0}"/>
+   <rich:dataTable id="listastatus" value="#{listaStatus}" var="hotPar" rendered="#{listaStatus.rowCount>0}" style="width:70%">
+        <h:column>
+	  <f:facet name="header"><h:outputText value="Id" /></f:facet>
+	  <div  align="left"> #{hotPar.staId}</div>
+	  </h:column>
+      <h:column>
+	  <f:facet name="header"><h:outputText value="Nombre" /></f:facet>
+	  <div  align="left"> #{hotPar.staNombre}</div>
+	  </h:column>
+ 	  <h:column>
+	    <f:facet name="header"><h:outputText value="" /></f:facet>
+	      <div align="center" >
+	      <s:link  id="Verstatus"  action="#{statusRegistroAction.seleccionMoperStatus(hotPar)}" rendered="#{statusBuscarAction.permisoConsulta}"  >
+			  <h:graphicImage value="/img/imgIcon/file_edit.png" />
+               <rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom">
+                 <span  style="white-space:nowrap;color:BLACK;">Editar</span>
+               </rich:toolTip>
+            </s:link>
+             <h:graphicImage value="/img/imgIcon/whites.png" />
+           <a:commandLink    onclick="javascript:borrarPar('#{hotPar.staNombre}','#{hotPar.staId}')"    rendered="#{statusBuscarAction.permisoEliminar}"  >
+			  <h:graphicImage value="/img/imgIcon/trash.png" />
+                <rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom">
+                 <span  style="white-space:nowrap;color:BLACK;">Eliminar</span>
+                </rich:toolTip>
+		     </a:commandLink>
+	        </div>
+		   </h:column> 
+		  <f:facet name="footer">
+         <h:outputText value="Tipo de status" />
+       </f:facet>    
+      </rich:dataTable> 
+     </div>
+   
+<div align="center"> <h:form id="frmPaginacion" ><a:commandButton   id="First"  reRender="searchResults" action="#{statusBuscarAction.firstPage()}"  rendered="#{statusBuscarAction.page > 0 }" image="/img/imgIcon/p_first.png" ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Primero Página</span></rich:toolTip> </a:commandButton>&#160;<a:commandButton   id="Prev"  reRender="searchResults" action="#{statusBuscarAction.backPage()}"  rendered="#{statusBuscarAction.page > 0 }" image="/img/imgIcon/p_prev.png" ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Atras</span></rich:toolTip> </a:commandButton>&#160; <h:outputLabel value="Página #{statusBuscarAction.page + 1} de #{statusBuscarAction.queryCantidadTotal} "  rendered="#{statusBuscarAction.queryCantidadTotal > 1  }" />&#160; <a:commandButton    id="Nex" action="#{statusBuscarAction.nextPage()}" reRender="searchResults"   rendered="#{statusBuscarAction.queryCantidadTotal > 1 and  statusBuscarAction.queryCantidadTotal != statusBuscarAction.page + 1}"   image="/img/imgIcon/p_next.png"  ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Siguiente</span></rich:toolTip></a:commandButton>&#160; <a:commandButton    id="Last" action="#{statusBuscarAction.lastPage()}" reRender="searchResults"   rendered="#{statusBuscarAction.queryCantidadTotal > 1 and  statusBuscarAction.queryCantidadTotal != statusBuscarAction.page + 1}"   image="/img/imgIcon/p_last.png"  ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Última página</span></rich:toolTip></a:commandButton></h:form> </div>   
+    </a:outputPanel>
+    
+ </rich:panel>
+
+  <!-- rich:modalPanel -->
+  <rich:modalPanel id="panelEliminar"   >
+        <f:facet name="header">
+            <h:panelGroup>
+                <h:outputText value="Confirmar eliminar statuss"></h:outputText>
+            </h:panelGroup>
+        </f:facet>
+        <f:facet name="controls">
+            <h:panelGroup>
+                <h:graphicImage value="/img/imgIcon/close.png" style="cursor:pointer" id="hidelink"/>
+                <rich:componentControl for="panelEliminar" attachTo="hidelink" operation="hide" event="onclick"/>
+            </h:panelGroup>
+        </f:facet>
+        <h:form  id="frmDelete" styleClass="form" >
+        <div align="center">
+         <table>
+           <tr><td align="center">
+                <h:graphicImage value="/img/imgIcon/info.png" /></td><td align="center"><h:inputTextarea    id="statusDelete" cols="30" rows="4"   style="border:none;background: #FFFFFF; width: 200px; color: black;" readonly="true" /></td></tr>
+         </table>        
+        </div>
+        <div>
+       
+        <h:inputHidden   id="deleteStatus" value="#{statusBuscarAction.deleteStatus}"  /></div>
+        <div align="center">   
+        <a:commandButton value="Si" action='#{statusBuscarAction.eliminarStatus()}'  reRender="searchResults" styleClass="button"  oncomplete="Richfaces.hideModalPanel('panelEliminar');">
+          <rich:componentControl for="panelEliminar" attachTo="acept" operation="hide" event="onclick"/>
+         </a:commandButton>
+         &#160;&#160;
+         <a:commandButton id="delete" value="No"  action="#{statusBuscarAction.find}" reRender="searchResults" styleClass="button" >
+           <rich:componentControl for="panelEliminar" attachTo="delete" operation="hide" event="onclick"/>
+        </a:commandButton>
+       </div>
+     </h:form>
+     </rich:modalPanel>
+   <!-- /rich:modalPanel -->
+   
+   
+   
+  <!-- rich:modalPanel crear -->
+  <rich:modalPanel id="panelCrear"  resizeable="false" >
+        <f:facet name="header">
+            <h:panelGroup>
+                <h:outputText value="Crear Tipo de status"></h:outputText>
+            </h:panelGroup>
+        </f:facet>
+        <f:facet name="controls">
+            <h:panelGroup>
+                <h:graphicImage value="/img/imgIcon/close.png" style="cursor:pointer" id="hideRollink"/>
+                <rich:componentControl for="panelCrear" attachTo="hideRollink" operation="hide" event="onclick"/>
+            </h:panelGroup>
+        </f:facet>
+      <h:form  id="frmCrear" styleClass="form" >
+          <table align="center" border="0" cellpadding="2" cellspacing="2" >
+			<tr><td><h:outputText value=" "         /></td><td> <rich:message id="messagerolNombreRol"  for="bienNombre" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td><h:outputText value="Nombre"    /></td><td> <h:inputText  id="bienNombre" value="#{statusRegistroAction.moperStatusReg.staNombre}"  size="31" maxlength="30"  required="true"   ></h:inputText></td></tr>
+			<tr style="height:5px"><td colspan="4"><hr></hr></td></tr>                                                                                                                                                                                                                                                                                                                  
+			<tr><td  colspan="4" style="text-align: center;"><s:link  id="voverLista"  view="/pages/parametros/status/operLista.xhtml"   ><h:graphicImage value="/img/imgIcon/arrow_left.png" /><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap">volver</span></rich:toolTip></s:link>&#160;&#160;<h:commandButton value="Actualizar"  action="#{statusRegistroAction.guardar}" image="/img/imgIcon/disc.png" reRender="searchResults" ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap">Actualizar</span></rich:toolTip></h:commandButton>&#160;  </td></tr>
+	    </table>
+      </h:form>
+     </rich:modalPanel>
+   <!-- /rich:modalPanel -->
+</html>

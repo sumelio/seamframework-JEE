@@ -1,0 +1,4 @@
+#Wed Nov 18 23:40:48 COT 2009
+default.configuration=leasing-ejb
+eclipse.preferences.version=1
+hibernate3.enabled=true

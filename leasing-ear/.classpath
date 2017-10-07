@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.jboss.ide.eclipse.as.core.server.runtime.runtimeTarget/JBoss"/>
+	<classpathentry kind="lib" path="EarContent/antlr-runtime.jar"/>
+	<classpathentry kind="lib" path="EarContent/drools-compiler.jar"/>
+	<classpathentry kind="lib" path="EarContent/drools-core.jar"/>
+	<classpathentry kind="lib" path="EarContent/jboss-el.jar"/>
+	<classpathentry kind="lib" path="EarContent/jboss-seam.jar"/>
+	<classpathentry kind="lib" path="EarContent/jbpm-jpdl.jar"/>
+	<classpathentry kind="lib" path="EarContent/jsf-facelets-1.1.15.B1.jar"/>
+	<classpathentry kind="lib" path="EarContent/mvel14.jar"/>
+	<classpathentry kind="lib" path="EarContent/richfaces-api.jar"/>
+	<classpathentry kind="lib" path="EarContent/richfaces-impl.jar"/>
+	<classpathentry kind="lib" path="EarContent/richfaces-ui.jar"/>
+	<classpathentry kind="lib" path="EarContent/testng.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

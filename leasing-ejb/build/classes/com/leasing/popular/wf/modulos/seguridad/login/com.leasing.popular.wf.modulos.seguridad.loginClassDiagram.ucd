@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="com.leasing.popular.wf.modulos.seguridad.loginClassDiagram" id="{UMLID=_7PycgEAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login}" metadata="uml2-1.0" initialized="true" scrolledY="164" tag="10" key="3230303730363239206C656173696E672D656A62" PSMCodeGenerationPreferences="66">
+  <children xsi:type="editmodel:InterfaceEditModel" name="Accesos" location="546,50" size="197,205" id="{UMLID=_7kndAEAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/Accesos}">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="176,144">
+      <children xsi:type="editmodel:MethodEditModel" name="acceso" size="76,16" id="{UMLID=_7k6X8EAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/Accesos#acceso()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="accesoRol" size="91,16" id="{UMLID=_7lzIwEAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/Accesos#accesoRol()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getConverter" size="103,16" id="{UMLID=_7k6X9EAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/Accesos#getConverter()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getListaRolUsuarioAcceso" size="168,16" id="{UMLID=_7lNS5EAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/Accesos#getListaRolUsuarioAcceso()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setListaRolUsuarioAcceso" size="168,16" id="{UMLID=_7lgN1UAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/Accesos#setListaRolUsuarioAcceso(LCollection;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setMsegRolusuariosAcceso" size="176,16" id="{UMLID=_7lp-0EAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/Accesos#setMsegRolusuariosAcceso(Lcom.leasing.popular.wf.table.seguridad.usuarios.MsegRolusuarios;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getMsegRolusuariosAcceso" size="176,16" id="{UMLID=_7lzIwUAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/Accesos#getMsegRolusuariosAcceso()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="destroy" size="77,16" id="{UMLID=_7lgN2EAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/Accesos#destroy()}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="AccesosAction" location="50,50" size="203,458" stereotype="Service, andromda_service_type" id="{UMLID=_7nl4gEAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/AccesosAction}">
+    <children xsi:type="editmodel:CompartmentEditModel" size="63,54">
+      <children xsi:type="editmodel:AttributeEditModel" name="identity" size="63,16" id="{UMLID=_7pOQO0AAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="log" size="43,16" id="{UMLID=_7p0tJEAAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="em" size="43,16" id="{UMLID=_7p0tIUAAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="msegUsuarios" size="104,21" id="{UMLID=_7pOQNEAAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="msegUsuariosSession" size="143,21" id="{UMLID=_7pq8KEAAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="msegRoles" size="88,21" id="{UMLID=_7pOQOEAAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="msegRolusuariosAcceso" size="156,21" id="{UMLID=_7pq8JkAAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="listaRolUsuarioAcceso" size="144,21" id="{UMLID=_7pq8I0AAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="msegRolusuariosActionDAO" size="172,21" id="{UMLID=_7pOQMEAAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="msegUsuariosActionDAO" size="158,21" id="{UMLID=_7p93E0AAEd-PsqPoqWFifA}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="182,164">
+      <children xsi:type="editmodel:MethodEditModel" name="acceso" size="76,16" id="{UMLID=_7qQyBkAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/AccesosAction#acceso()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="accesoRol" size="91,16" id="{UMLID=_7qajAkAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/AccesosAction#accesoRol()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getListaRolUsuarioAcceso" size="174,21" id="{UMLID=_7qQyA0AAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/AccesosAction#getListaRolUsuarioAcceso()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setListaRolUsuarioAcceso" size="174,21" id="{UMLID=_7qHoFEAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/AccesosAction#setListaRolUsuarioAcceso(LCollection;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getConverter" size="103,16" id="{UMLID=_7p93F0AAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/AccesosAction#getConverter()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getMsegRolusuariosAcceso" size="182,21" id="{UMLID=_7qQyAEAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/AccesosAction#getMsegRolusuariosAcceso()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setMsegRolusuariosAcceso" size="182,21" id="{UMLID=_7qHoEUAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/AccesosAction#setMsegRolusuariosAcceso(Lcom.leasing.popular.wf.table.seguridad.usuarios.MsegRolusuarios;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="destroy" size="77,16" id="{UMLID=_7qajA0AAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/AccesosAction#destroy()}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" name="Authenticator" location="50,558" size="125,115" id="{UMLID=_71a5IEAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/Authenticator}">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="99,54">
+      <children xsi:type="editmodel:MethodEditModel" name="authenticate" size="99,16" id="{UMLID=_71kqJkAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/Authenticator#authenticate()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getValor" size="80,16" id="{UMLID=_71kqIEAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/Authenticator#getValor()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setValor" size="80,16" id="{UMLID=_71kqI0AAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/Authenticator#setValor(Ljava.lang.String;)}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="AuthenticatorAction" location="303,50" size="193,338" stereotype="Service, andromda_service_type" id="{UMLID=_72eCAEAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/AuthenticatorAction}">
+    <children xsi:type="editmodel:CompartmentEditModel" size="107,90">
+      <children xsi:type="editmodel:AttributeEditModel" name="identity" size="63,16" id="{UMLID=_73Wy1EAAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="log" size="43,16" id="{UMLID=_74QKsEAAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="em" size="43,16" id="{UMLID=_74GZtEAAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="listaRolUsuarioAcceso" size="144,21" id="{UMLID=_73zewkAAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="facesMessages" size="107,16" id="{UMLID=_739Pw0AAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="valor" size="53,16" id="{UMLID=_739PwUAAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="listaRolesUsuario" size="118,21" id="{UMLID=_73zexUAAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="msegUsuarios" size="104,21" id="{UMLID=_73Wy0kAAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="msegUsuariosActionDAO" size="158,21" id="{UMLID=_74ZUokAAEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="msegRolusuariosActionDAO" size="172,21" id="{UMLID=_73Wy0EAAEd-PsqPoqWFifA}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="99,54">
+      <children xsi:type="editmodel:MethodEditModel" name="getValor" size="80,16" id="{UMLID=_74ZUqkAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/AuthenticatorAction#getValor()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setValor" size="80,16" id="{UMLID=_74ZUp0AAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/AuthenticatorAction#setValor(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="authenticate" size="99,16" id="{UMLID=_74ZUpEAAEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.seguridad.login/AuthenticatorAction#authenticate()}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=1" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="14,14" gridOrigin="0,672" rulerUnit="cm" gridShow="true">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" attributeSorter="Natural" methodSorter="Natural" shortPackageNameFormat="true" showClassStereotype="true" showPackageStereotype="true" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showInterfaceStereotype="true" showMethods="true" showAttributes="true" showLiterlas="true" showInnerEntity="true"/>
+</editmodel:ClassDiagramEditModel>

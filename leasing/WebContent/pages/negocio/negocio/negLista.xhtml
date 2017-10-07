@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:rich="http://richfaces.org/rich">
+<head>
+<link rel="stylesheet" type="text/css" href="../../../css/estilosLeasing1.css"/>
+<script type="text/javascript">
+ function borrarEst(negCliente, negId)
+ {        
+ try{
+        Richfaces.showModalPanel('panelNegocioEliminar',{width:300, height:150, top:100});
+        document.forms['frmDeleteNegocio'].elements['frmDeleteNegocio:negacionDelete'].value = "¿Esta seguro de eliminar la información de \"" + negCliente + "\", negocio número \"" + negId+ "\"?.";
+        document.forms['frmDeleteNegocio'].elements['frmDeleteNegocio:deleteNegocio'].value = negId;
+ }catch(e){
+	   txt="Tenemos un error en esta pagina.\n\n";
+	   txt+="Error descripcion: " + e + "\n\n";
+	   txt+="Click OK para continuar.\n\n";
+	   alert(txt);
+	} 
+  }
+
+</script>
+</head>
+<rich:panel id="content"  style="width:100%;" >
+<div class="section">
+ <span class="errors" style="text-align: center;" ><div style="text-align: center;"><h:messages id="errores"  styleClass="errors" globalOnly="true"/></div> </span>
+ <h5>Buscar  Negocio</h5>
+  <h:form  id="buscarEst" styleClass="form" >
+  	
+    <fieldset> 
+	   <h:inputText id="SearchPatternNegocio" value="#{negBuscarAction.searchStringNegocio}" style="width: 165px;">
+         <a:support event="onkeyup" actionListener="#{negBuscarAction.find}" reRender="searchResults" />
+       </h:inputText>
+       &#160;
+	   <a:commandButton id="findParametros" value="Buscar" action="#{negBuscarAction.find}" reRender="searchResults"  image="/img/imgIcon/search.png" />
+       &#160;
+       <a:status>
+          <f:facet name="start">
+             <h:graphicImage value="/img/imgIcon/spinner.gif"  />
+          </f:facet>
+       </a:status>
+	   <br/>
+       <table width="100%">
+        <tr>
+         <td>
+         <h:outputLabel for="pageSize">Registros por p&aacute;gina:</h:outputLabel>&#160;
+         <h:selectOneMenu value="#{negBuscarAction.pageSize}" id="pageSize">
+           <f:selectItem itemLabel="5" itemValue="5"/>
+           <f:selectItem itemLabel="10" itemValue="10"/>
+           <f:selectItem itemLabel="20" itemValue="20"/>
+          </h:selectOneMenu>
+          </td>
+          <td align="right">
+          
+		     
+		     
+		     <s:link  id="EliminarUsuario"  action="#{negRegistroAction.nuevo()}" rendered="#{negBuscarAction.permisoInsertar}" >
+			  <h:graphicImage value="/img/imgIcon/file_add.png" /> 
+               <rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom;color:BLACK;">
+                 <span  style="white-space:nowrap;color:BLACK;">Crear Negocio</span>
+              </rich:toolTip>
+           </s:link>
+		 &#160; &#160;	
+          </td>
+          </tr>
+       </table>
+    </fieldset>
+ </h:form>
+</div>
+
+
+
+
+<a:outputPanel id="searchResults" rendered="true" >
+  <div class="section" align="center">
+  <h:outputText  value="No existen Negocio" rendered="#{listaNegocio== null or listaNegocio.rowCount==0}"/>
+   <rich:dataTable id="listaNegocio" value="#{listaNegocio}" var="hotNeg" rendered="#{listaNegocio.rowCount>0}"  style="width:100%">
+   
+      <h:column>
+	  <f:facet name="header"><h:outputText value="Id" /></f:facet>
+	  <div  align="left"> #{hotNeg.negId}</div>
+	  </h:column>   
+      <h:column>
+	  <f:facet name="header"><h:outputText value="Fecha" /></f:facet>
+	  <div  align="left"> #{hotNeg.negFecha}</div>
+	  </h:column>
+	   <h:column>
+	  <f:facet name="header"><h:outputText value="Identificación" /></f:facet>
+	  <div  align="left"> #{hotNeg.mcomPersonasByFkClientePersonas.id.perIdentificacion} </div>
+	  </h:column>
+	   <h:column>
+	  <f:facet name="header"><h:outputText value="Persona" /></f:facet>
+	  <div  align="left"> #{hotNeg.mcomPersonasByFkClientePersonas.perNombres}&#160;&#160;#{hotNeg.mcomPersonasByFkClientePersonas.perApellidos}</div>
+	  </h:column>
+	  
+ 	  <h:column>
+	    <f:facet name="header"><h:outputText value="" /></f:facet>
+	      <div align="center" style=" width : 41px;">
+	        <s:link  id="VerParametro"  action="#{negRegistroAction.seleccionNegocio(hotNeg)}" rendered="#{negBuscarAction.permisoConsulta}"  >
+			  <h:graphicImage value="/img/imgIcon/file_edit.png" />
+               <rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom">
+                 <span  style="white-space:nowrap;color:BLACK;">Editar</span>
+               </rich:toolTip>
+            </s:link>
+            &#160;
+           <a:commandLink    onclick="javascript:borrarEst('#{hotNeg.mcomPersonasByFkClientePersonas.perNombres}','#{hotNeg.negId}')"    rendered="#{negBuscarAction.permisoEliminar}"  >
+			  <h:graphicImage value="/img/imgIcon/trash.png" />
+                <rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom">
+                 <span  style="white-space:nowrap;color:BLACK;">Eliminar</span>
+                </rich:toolTip>
+		     </a:commandLink>
+	        </div>
+		   </h:column> 
+		  <f:facet name="footer">
+         <h:outputText value="Tipo de Negocio" />
+       </f:facet>    
+      </rich:dataTable> 
+ 	 </div>  
+    <div align="center"> <h:form id="frmPaginacion" ><a:commandButton   id="First"  reRender="searchResults" action="#{negBuscarAction.firstPage()}"  rendered="#{negBuscarAction.page > 0 }" image="/img/imgIcon/p_first.png" ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Primero Página</span></rich:toolTip> </a:commandButton>&#160;<a:commandButton   id="Prev"  reRender="searchResults" action="#{negBuscarAction.backPage()}"  rendered="#{negBuscarAction.page > 0 }" image="/img/imgIcon/p_prev.png" ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Atras</span></rich:toolTip> </a:commandButton>&#160; <h:outputLabel value="Página #{negBuscarAction.page + 1} de #{negBuscarAction.queryCantidadTotal} "  rendered="#{negBuscarAction.queryCantidadTotal > 1  }" />&#160; <a:commandButton    id="Nex" action="#{negBuscarAction.nextPage()}" reRender="searchResults"   rendered="#{negBuscarAction.queryCantidadTotal > 1 and  negBuscarAction.queryCantidadTotal != negBuscarAction.page + 1}"   image="/img/imgIcon/p_next.png"  ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Siguiente</span></rich:toolTip></a:commandButton>&#160; <a:commandButton    id="Last" action="#{negBuscarAction.lastPage()}" reRender="searchResults"   rendered="#{negBuscarAction.queryCantidadTotal > 1 and  negBuscarAction.queryCantidadTotal != negBuscarAction.page + 1}"   image="/img/imgIcon/p_last.png"  ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Última página</span></rich:toolTip></a:commandButton></h:form> </div>
+   </a:outputPanel>
+      
+	 
+   
+ </rich:panel>
+
+  <!-- rich:modalPanel -->
+  <rich:modalPanel id="panelNegocioEliminar"   >
+        <f:facet name="header">
+            <h:panelGroup>
+                <h:outputText value="Confirmar eliminar Persona"></h:outputText>
+            </h:panelGroup>
+        </f:facet>
+        <f:facet name="controls">
+            <h:panelGroup>
+                <h:graphicImage value="/img/imgIcon/close.png" style="cursor:pointer" id="hidelink"/>
+                <rich:componentControl for="panelNegocioEliminar" attachTo="hidelink" operation="hide" event="onclick"/>
+            </h:panelGroup>
+        </f:facet>
+        <h:form  id="frmDeleteNegocio" styleClass="form" >
+        <div align="center">
+         <table>
+           <tr><td align="center">
+                <h:graphicImage value="/img/imgIcon/info.png" /></td><td align="center"><h:inputTextarea    id="negacionDelete" cols="30" rows="4"   style="border:none;background: #FFFFFF; width: 200px; color: black;" readonly="true" /></td></tr>
+         </table>        
+      
+        </div>
+        <div align="center">   
+          <h:inputHidden    id="deleteNegocio" value="#{negBuscarAction.deleteNegocio}"  />
+      
+        <a:commandButton value="Si" action="#{negBuscarAction.eliminarNegocio}"  reRender="searchResults"  styleClass="button"   oncomplete="Richfaces.hideModalPanel('panelNegocioEliminar');">
+          <rich:componentControl for="panelNegocioEliminar"  attachTo="acept" operation="hide" event="onclick" />
+         </a:commandButton>
+         &#160;&#160;
+         <a:commandButton id="delete" value="No"  action="#{negBuscarAction.find}" reRender="searchResults" styleClass="button"  >
+           <rich:componentControl for="panelNegocioEliminar" attachTo="delete" operation="hide" event="onclick"/>
+        </a:commandButton>
+       </div>
+     </h:form>
+     </rich:modalPanel>
+   <!-- /rich:modalPanel -->
+   
+
+</html>

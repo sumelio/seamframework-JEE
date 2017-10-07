@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:rich="http://richfaces.org/rich">
+<head>
+</head>  
+   <rich:tabPanel headerAlignment="right" id="Tab" style="width:100%;"> 
+    <rich:tab name="TabTper" label="Estudio" id="TabEstudio"  style="width:100%;" ajaxSingle="true">		 	
+     <iframe name="fTabTperBuscar" id="frameVisor" frameborder="0" scrolling="no" src="../../../../../${facesContext.externalContext.requestContextPath}/pages/negocio/estudio/estLista.seam?preload='0'" width="100%" height="660px">Su explorador no soporta iframes</iframe>
+   	</rich:tab>
+ </rich:tabPanel>
+</html>

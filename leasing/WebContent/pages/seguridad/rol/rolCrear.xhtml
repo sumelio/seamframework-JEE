@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:c="http://java.sun.com/jstl/core">
+<head>
+<link rel="stylesheet" type="text/css" href="../../../css/estilosLeasing1.css"/>
+</head>
+ <h:form id="frmCrear" >
+		  <table align="center" border="0" cellpadding="2" cellspacing="2" >
+			<tr><td bgcolor="#DDE9DC"><h:outputText value=" "         /></td><td> <rich:message id="messageusuNombres"  for="usuNombres" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Nombre"    /></td><td> <h:inputText  id="usuNombres" value="#{usuarioRegistroAction.msegUsuariosReg.usuNombres}"  size="31" maxlength="30"  required="true"   ><f:validateLength minimum="3" maximum="29"/></h:inputText></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value=" "         /></td><td> <rich:message id="messageusuApellidos"  for="usuApellidos" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Apellido:" /></td><td> <h:inputText  id="usuApellidos"  value="#{usuarioRegistroAction.msegUsuariosReg.usuApellidos}"  size="31" maxlength="30" required="true"  /></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value=" "         /></td><td> <rich:message id="messageusuCedula"  for="usuCedula" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message> </td></tr>  
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Numero de Documento"/></td><td><h:inputText id="usuCedula" value="#{usuarioRegistroAction.msegUsuariosReg.usuCedula}"  size="13" maxlength="11"  integer="true" required="true" ><f:validateLength minimum="8" /></h:inputText></td></tr>
+		    <tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="messag_msegEstados"  for="msegEstados" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Estado"/></td><td><rich:comboBox  id="msegEstados"  value="#{usuarioRegistroAction.msegUsuariosReg.msegEstados}"       required="true" converter="#{usuarioRegistroAction.converter}" requiredMessage="Seleccione un estado"  label="Estados"    ><s:selectItems     value="#{usuarioRegistroAction.listaEstadosReg}"    var="m" label="#{m.estNombre}"   /></rich:comboBox>     </td></tr>
+            <tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="messageusuUsuario"  for="usuUsuario" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Usuario" /></td><td> <h:inputText id="usuUsuario"  size="31" maxlength="30" value="#{usuarioRegistroAction.msegUsuariosReg.usuUsuario}" required="true" ><a:support event="onblur" /></h:inputText></td></tr>
+		    <tr style="height:5px"><td colspan="4"><hr></hr></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="messageusuContrasena"  for="usuContrasena" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+		    <tr><td bgcolor="#DDE9DC"><h:outputText value="Contraseña" /></td><td><h:inputSecret id="usuContrasena" value="#{usuarioRegistroAction.msegUsuariosReg.usuContrasena}"  required="true"  size="31" maxlength="30"><f:validateLength  minimum="5"  maximum="30"  /></h:inputSecret></td></tr>
+			<tr><td bgcolor="#DDE9DC"></td><td><rich:message id="message_verify"  for="verify" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+            <tr><td bgcolor="#DDE9DC"><h:outputText value="Confirmar:" /></td><td><h:inputSecret id="verify" value="#{usuarioRegistroAction.verify}" size="31" maxlength="30" /></td></tr>   
+			<tr style="height:5px"><td colspan="4"><hr></hr></td></tr>
+			<tr><td   align="center" colspan="4"><h:messages id="errors" globalOnly="true"      styleClass="errors"  /></td></tr>
+			<tr><td  colspan="4" style="text-align: center;"><s:link  id="voverLista"  view="/pages/seguridad/usuario/usuLista.xhtml"   ><h:graphicImage value="/img/imgIcon/arrow_left.png" /><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap">volver</span></rich:toolTip></s:link>&#160;&#160;<h:commandButton value="Actualizar" action="#{usuarioRegistroAction.register}"  image="/img/imgIcon/disc.png" ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap">Actualizar</span></rich:toolTip></h:commandButton>&#160;<s:link  view="/pages/seguridad/usuario/usuCrear.xhtml"   > <h:graphicImage value="/img/imgIcon/file.png" /><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap">Nuevo Usuario</span></rich:toolTip></s:link>&#160;  </td></tr>
+		</table>
+	</h:form>
+</html>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:rich="http://richfaces.org/rich">
+<head>
+<link rel="stylesheet" type="text/css" href="../../../css/estilosLeasing1.css"/>
+<script type="text/javascript">
+ function borrarPer(perNombre, perNumId, perTipId, perId)
+ {        
+ try{
+        Richfaces.showModalPanel('panelPersonaEliminar',{width:360, height:150, top:100});
+        document.forms['frmDeletePersona'].elements['frmDeletePersona:personaDelete'].value = "¿Esta seguro de eliminar la información de \"" + perNombre + "\" con tipo de documento \"" +perTipId +"\" y número \""+perNumId+ "\"?.";
+        document.forms['frmDeletePersona'].elements['frmDeletePersona:deletePersona'].value = perId;
+ }catch(e){
+	   txt="Tenemos un error en esta pagina.\n\n";
+	   txt+="Error descripcion: " + e + "\n\n";
+	   txt+="Click OK para continuar.\n\n";
+	   alert(txt);
+	} 
+  }
+
+</script>
+</head>
+<rich:panel id="content"  style="width:100%;" >
+<div class="section">
+ <span class="errors" style="text-align: center;" ><div style="text-align: center;"><h:messages id="errores"  styleClass="errors" globalOnly="true"/></div> </span>
+ <h5>Buscar  Cliente</h5>
+  <h:form  id="buscarPar" styleClass="form" >
+  	
+    <fieldset> 
+	   <h:inputText id="searchString" value="#{perBuscarAction.searchString}" style="width: 165px;">
+         <a:support event="onkeyup" actionListener="#{perBuscarAction.find}" reRender="searchResults" />
+       </h:inputText>
+       &#160;
+	   <a:commandButton id="findParametros" value="Buscar" action="#{perBuscarAction.find}" reRender="searchResults"  image="/img/imgIcon/search.png" />
+       &#160;
+       <a:status>
+          <f:facet name="start">
+             <h:graphicImage value="/img/imgIcon/spinner.gif"  />
+          </f:facet>
+       </a:status>
+	   <br/>
+       <table width="100%">
+        <tr>
+         <td>
+         <h:outputLabel for="pageSize">Registros por p&aacute;gina:</h:outputLabel>&#160;
+         <h:selectOneMenu value="#{perBuscarAction.pageSize}" id="pageSize">
+           <f:selectItem itemLabel="5" itemValue="5"/>
+           <f:selectItem itemLabel="10" itemValue="10"/>
+           <f:selectItem itemLabel="20" itemValue="20"/>
+          </h:selectOneMenu>
+          </td>
+          <td align="right">
+          
+		     
+		     
+		     <s:link  id="EliminarUsuario"  action="#{perRegistroAction.nuevo()}" rendered="#{perBuscarAction.permisoInsertar}" >
+			  <h:graphicImage value="/img/imgIcon/file_add.png" /> 
+               <rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom;color:BLACK;">
+                 <span  style="white-space:nowrap;color:BLACK;">Crear Persona</span>
+              </rich:toolTip>
+           </s:link>
+		 &#160; &#160;	
+          </td>
+          </tr>
+       </table>
+    </fieldset>
+ </h:form>
+</div>
+
+
+
+
+<a:outputPanel id="searchResults" rendered="true" >
+  <div class="section" align="center">
+  <h:outputText  value="No existen Personas" rendered="#{listaPersona== null or listaPersona.rowCount==0}"/>
+   <rich:dataTable id="listaPersona" value="#{listaPersona}" var="hotPer" rendered="#{listaPersona.rowCount>0}" style="width:100%">
+   
+      <h:column>
+	  <f:facet name="header"><h:outputText value="Tipo Id." /></f:facet>
+	  <div  align="left" >#{hotPer.mpaValoresByFkPersonasValoresTipoid.varNombre}</div>
+	  </h:column>   
+	  <h:column>
+	  <f:facet name="header"><h:outputText value="N° Id" /></f:facet>
+	  <div  align="left"> #{hotPer.id.perIdentificacion} </div>
+	  </h:column>   
+      <h:column>
+	  <f:facet name="header"><h:outputText value="Nombre" /></f:facet>
+	  <div  align="left"> #{hotPer.perNombres}&nbsp;&#160;&#160;#{hotPer.perApellidos}</div>
+	  </h:column>
+ 	  <h:column>
+	    <f:facet name="header"><h:outputText value="" /></f:facet>
+	      <div align="center" style=" width : 41px;" >
+	        <s:link  id="VerParametro"  action="#{perRegistroAction.seleccionPersona(hotPer)}" rendered="#{perBuscarAction.permisoConsulta}"  >
+			  <h:graphicImage value="/img/imgIcon/file_edit.png" />
+               <rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom">
+                 <span  style="white-space:nowrap;color:BLACK;">Editar</span>
+               </rich:toolTip>
+            </s:link>
+            &#160;
+           <a:commandLink    onclick="javascript:borrarPer('#{hotPer.perNombres} #{hotPer.perApellidos}', '#{hotPer.id.perIdentificacion}', '#{hotPer.mpaValoresByFkPersonasValoresTipoid.varNombre}', '#{hotPer.id.perIdentificacion}:#{hotPer.id.perTipoIdentificacion}|#{hotPer.id.perParaTipoId}' )"    rendered="#{perBuscarAction.permisoEliminar}"  >
+			  <h:graphicImage value="/img/imgIcon/trash.png" />
+                <rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom">
+                 <span  style="white-space:nowrap;color:BLACK;">Eliminar</span>
+                </rich:toolTip>
+		     </a:commandLink>
+	        </div>
+		   </h:column> 
+		  <f:facet name="footer">
+         <h:outputText value="Tipo de Personas" />
+       </f:facet>    
+      </rich:dataTable> 
+     </div>
+      <div align="center"> <h:form id="frmPaginacion" ><a:commandButton   id="First"  reRender="searchResults" action="#{perBuscarAction.firstPage()}"  rendered="#{perBuscarAction.page > 0 }" image="/img/imgIcon/p_first.png" ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Primero Página</span></rich:toolTip> </a:commandButton>&#160;<a:commandButton   id="Prev"  reRender="searchResults" action="#{perBuscarAction.backPage()}"  rendered="#{perBuscarAction.page > 0 }" image="/img/imgIcon/p_prev.png" ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Atras</span></rich:toolTip> </a:commandButton>&#160; <h:outputLabel value="Página #{perBuscarAction.page + 1} de #{perBuscarAction.queryCantidadTotal} "  rendered="#{perBuscarAction.queryCantidadTotal > 1  }" />&#160; <a:commandButton    id="Nex" action="#{perBuscarAction.nextPage()}" reRender="searchResults"   rendered="#{perBuscarAction.queryCantidadTotal > 1 and  perBuscarAction.queryCantidadTotal != perBuscarAction.page + 1}"   image="/img/imgIcon/p_next.png"  ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Siguiente</span></rich:toolTip></a:commandButton>&#160; <a:commandButton    id="Last" action="#{perBuscarAction.lastPage()}" reRender="searchResults"   rendered="#{perBuscarAction.queryCantidadTotal > 1 and  perBuscarAction.queryCantidadTotal != perBuscarAction.page + 1}"   image="/img/imgIcon/p_last.png"  ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Última página</span></rich:toolTip></a:commandButton></h:form> </div>   
+	 
+   
+   </a:outputPanel>
+  
+ </rich:panel>
+
+  <!-- rich:modalPanel -->
+  <rich:modalPanel id="panelPersonaEliminar"   >
+        <f:facet name="header">
+            <h:panelGroup>
+                <h:outputText value="Confirmar eliminar Persona"></h:outputText>
+            </h:panelGroup>
+        </f:facet>
+        <f:facet name="controls">
+            <h:panelGroup>
+                <h:graphicImage value="/img/imgIcon/close.png" style="cursor:pointer" id="hidelink"/>
+                <rich:componentControl for="panelPersonaEliminar" attachTo="hidelink" operation="hide" event="onclick"/>
+            </h:panelGroup>
+        </f:facet>
+        <h:form  id="frmDeletePersona" styleClass="form" >
+        <div align="center">
+         <table>
+           <tr><td align="center">
+                <h:graphicImage value="/img/imgIcon/info.png" /></td><td align="center"><h:inputTextarea    id="personaDelete" cols="30" rows="4"   style="border:none;background: #FFFFFF; width: 260px; color: black;" readonly="true" /></td></tr>
+         </table>        
+        </div>
+        <div>
+       
+        <h:inputHidden    id="deletePersona" value="#{perBuscarAction.deletePersona}"  /></div>
+        <div align="center">   
+        <a:commandButton value="Si" action='#{perBuscarAction.eliminarPersona}'   reRender="searchResults"  oncomplete="Richfaces.hideModalPanel('panelPersonaEliminar');" styleClass="button" >
+          <rich:componentControl for="panelPersonaEliminar" attachTo="acept" operation="hide" event="onclick"/>
+         </a:commandButton>
+         &#160;&#160;
+         <a:commandButton id="delete" value="No"  action="#{perBuscarAction.find}" reRender="searchResults"   styleClass="button" >
+           <rich:componentControl for="panelPersonaEliminar" attachTo="delete" operation="hide" event="onclick"/>
+        </a:commandButton>
+       </div>
+     </h:form>
+     </rich:modalPanel>
+   <!-- /rich:modalPanel -->
+   
+
+</html>

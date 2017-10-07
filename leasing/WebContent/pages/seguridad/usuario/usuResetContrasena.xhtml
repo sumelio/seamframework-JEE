@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:c="http://java.sun.com/jstl/core">
+<head>
+<link rel="stylesheet" type="text/css" href="../../../css/estilosLeasing1.css"/>
+<script language="javascript" src="../../../scripts/md5.js" />
+<script>
+	function encriptar(){
+     try{
+		document.forms['frmEditar'].elements['frmEditar:usuNuevaContrasena'].value = hex_md5(document.forms['frmEditar'].elements['frmEditar:usuNuevaContrasena_input'].value);
+		document.forms['frmEditar'].elements['frmEditar:usuConfirmaContrasena'].value = hex_md5(document.forms['frmEditar'].elements['frmEditar:usuConfirmaContrasena_input'].value);
+		
+	 }catch(e){
+		   txt="Tenemos un error en esta pagina.\n\n";
+		   txt+="Error descripcion: " + e.description + "\n\n";
+		   txt+="Click OK para continuar.\n\n";
+		   alert(txt);
+		} 
+		
+	}
+</script>	
+</head> 
+    <h:form  id="frmEditar" styleClass="form"  > 
+	    
+	      <table align="center" border="0" cellpadding="2" cellspacing="2" class="styleTables">
+ 		    <caption>Cambio de contraseña</caption>
+ 		    <tr style=" height : 6px;"><td  bgcolor="#DDE9DC" colspan="4">&nbsp;</td></tr> 
+			<tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><h:inputHidden id="usuCedula" value="#{usuarioEditarAction.msegUsuariosEdit.usuCedula}"  size="31" maxlength="30"   required="true"   /></td><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td></td></tr> 
+		    <tr><td bgcolor="#DDE9DC"><h:outputText value="Nombres" /></td><td colspan="3"><h:outputText  value="#{usuarioEditarAction.msegUsuariosEdit.usuNombres} #{usuarioEditarAction.msegUsuariosEdit.usuApellidos}"     />  </td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="message_usuNuevaContrasena"  for="usuNuevaContrasena_input" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="message_usuConfirmaContrasena"  for="usuConfirmaContrasena_input" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Nueva contraseña:" /></td><td><h:inputSecret id="usuNuevaContrasena_input"    size="31" maxlength="30"  required="true"  ><s:validate></s:validate></h:inputSecret><h:inputHidden id="usuNuevaContrasena"  value="#{usuarioEditarAction.usuNuevaContrasena}"  /> </td><td bgcolor="#DDE9DC"><h:outputText value="Confirmar:" /></td><td><h:inputSecret id="usuConfirmaContrasena_input"     size="31" maxlength="30"  required="true"  ><s:validate></s:validate></h:inputSecret><h:inputHidden id="usuConfirmaContrasena"  value="#{usuarioEditarAction.usuConfirmaContrasena}" /> </td></tr>  
+		 
+			<tr style="height:5px"><td colspan="4"><hr></hr></td></tr>
+			<tr><td align="center" colspan="4"><h:messages id="errors" globalOnly="true"      styleClass="errors"  /></td></tr>
+			<tr><td  colspan="4" style="text-align: center;"><s:link action="/pages/seguridad/usuario/usuEditar.xhtml"   ><h:graphicImage value="/img/imgIcon/arrow_left.png" /><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">volver</span></rich:toolTip></s:link>&#160;&#160;<h:commandButton  id="Actualizar_" value="Actualizar" action="#{usuarioEditarAction.resetContrasena  }"  onclick="encriptar();" image="/img/imgIcon/disc.png" rendered="#{usuarioBuscarAction.permisoActualizar}"    ><rich:toolTip id="toolTip_actualizar" followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Actualizar</span></rich:toolTip></h:commandButton></td></tr>	
+    </table>
+ </h:form>
+ 
+</html>

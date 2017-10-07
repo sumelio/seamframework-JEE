@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html
+
+ xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich ="http://richfaces.org/rich"
+       xmlns:a4j="http://richfaces.org/a4j">
+      <f:loadBundle basename="resourcesValidacion" var="msg" />
+   		<head>	
+   		<link rel="stylesheet" type="text/css" href="../../../css/estilosLeasing.css"/>
+		<script language="javascript" src="../../../scripts/md5.js" />
+		<title>#{msg.titulo}</title>
+		<script>
+ 
+	function encriptar(){  
+    try{
+		 document.forms['LoginBean'].elements['LoginBean:userpassword'].value = hex_md5(document.forms['LoginBean'].elements['LoginBean:userpasswordLogin'].value);
+		// alert("dd - " + document.forms['LoginBean'].elements['LoginBean:userpassword'].value );
+	 }catch(e){
+		   txt="Tenemos un error en esta pagina.\n\n";
+		   txt+="Error descripcion: " + err.description + "\n\n";
+		   txt+="Click OK para continuar.\n\n";
+		   alert(txt);
+		}
+	}
+    </script>
+    
+    
+    
+		</head>
+      <body>
+       <table align="center"  border="0" width="579px"  cellpadding="0"  cellspacing="0">
+        <tr><td><img id="head" src="../../../img/imgLogin/head.jpg"></img></td></tr>
+        <tr><td height="60px">&nbsp;</td></tr>
+        </table>
+        <table align="center" border="0" width="479px"  cellpadding="0"  cellspacing="0">
+		 <tr><td colspan="3"><ui:insert name="loginHead"><img id="waveImage"  src="../../../img/imgLogin/loginHead.jpg"></img></ui:insert></td></tr>
+		 <tr style="width:405px;height:150px;"><td width="47px" heigth="150px"><ui:insert name="loginLeft"><img id="left_"   src="../../../img/imgLogin/loginLeft.jpg"  ></img></ui:insert></td><td width="412px"  align="center"><ui:insert name="bodyLogin">Cuerpo</ui:insert></td><td width="27px" align="left" heigth="150"><ui:insert name="loginRight"><img id="right_"      src="../../../img/imgLogin/loginRight.jpg"></img></ui:insert></td></tr>
+		 <tr><td colspan="3"><ui:insert name="footer"><img id="footer" src="../../../img/imgLogin/loginFooter.jpg"></img></ui:insert></td></tr>
+	    </table>
+	  <table align="center"><tr><td align="center"><ui:insert name="textFooter"></ui:insert></td></tr></table>
+	</body>
+</html>

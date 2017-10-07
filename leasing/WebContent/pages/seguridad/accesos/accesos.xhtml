@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ 	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:a="http://richfaces.org/a4j"
+	  xmlns:rich="http://richfaces.org/rich"
+	  xmlns:s="http://jboss.com/products/seam/taglib">
+	  <head>
+	<link rel="stylesheet" type="text/css" href="../../../css/estilosLeasing.css"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>#{msg.titulo}</title>
+	
+ </head>
+<ui:composition template="../../templates/template/Template.xhtml">
+<f:loadBundle basename=" resourcesValidacion" var="msg" />
+<!-- content -->
+
+ <ui:define name="bodyLogin">
+   		    <h:form id="LoginAccesi" >
+   		        <div> #{msegUsuarios.usuNombres} #{msegUsuarios.usuApellidos}</div>
+   		        <div><h:outputLabel  value='Rol'/></div>  
+                <div style="height : 11px;"><h:message id="message"  for="listaRolUsuario"   styleClass="errors" showSummary="true" showDetail="false" /></div>
+                 <div> &#160;</div> 
+                <div>
+                
+                <rich:comboBox  id="listaRolUsuario"  value="#{accesosAction.msegRolusuariosAcceso}"       required="true" converter="#{accesosAction.converter}" requiredMessage="Seleccione un rol" label="Roles">
+                <s:selectItems     value="#{accesosAction.listaRolUsuarioAcceso}"    var="m" label="#{m.msegRoles.rolNombreRol}"   />
+                </rich:comboBox>
+                 
+                </div>
+                <div></div>
+                <div style="height : 22px;" ></div>
+                <div><h:commandButton id="login"     action="#{accesosAction.accesoRol}"   value='#{msg.inicio}' styleClass="button" /> &#160; <s:button action="#{identity.logout}" value="Salir" styleClass="button" ></s:button></div>
+               </h:form>
+  </ui:define>
+  <ui:define name="textFooter">
+                 <div class="textoNegro"><h:outputLabel id="msgleasing" value='#{msg.msgleasing}'/></div>
+  </ui:define>
+ </ui:composition>
+</html>

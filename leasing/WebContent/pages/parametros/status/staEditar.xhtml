@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:c="http://java.sun.com/jstl/core">
+<head>
+<link rel="stylesheet" type="text/css" href="../../../css/estilosLeasing1.css"/>
+</head>
+    <h:form  id="frmEditar" > 
+	<table align="center" border="0"  bordercolor="#FFFFFF" bgcolor="#FFFFFF"  cellpadding="2" cellspacing="2" class="styleTables"  width="500px;" style=" width : 500px;">
+	  <tr style=" height : 6px;"><td  bgcolor="#DDE9DC" colspan="4">&nbsp;</td></tr> 
+			
+	  <tr><td bgcolor="#DDE9DC" style=" width : 100px;"><h:outputText value=" " /></td><td><rich:message id="messagerolNombres"  for="bienNombres" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+	   <tr><td bgcolor="#DDE9DC" ><h:outputText value="Id" /></td><td><h:outputText id="Id" value="#{statusRegistroAction.moperStatusReg.staId}"  size="20"    required="true"   /></td></tr>
+	  
+	  <tr><td bgcolor="#DDE9DC" ><h:outputText value="Nombre" /></td><td><h:inputText id="staNombre" value="#{statusRegistroAction.moperStatusReg.staNombre}"  size="31" maxlength="30"   required="true"   ><f:validateLength minimum="3" maximum="30"/></h:inputText></td></tr>
+	  <tr><td>&nbsp;</td>
+	  </tr>
+	  <tr>
+	 
+			</tr>
+			
+			<tr style="height:5px"><td colspan="4"><hr></hr></td></tr>
+			<tr><td align="center" colspan="4"><h:messages id="errors" globalOnly="true"      styleClass="errors"  /></td></tr>
+			<tr><td  colspan="4" style="text-align: center;"><s:link action="#{statusBuscarAction.find()}"   ><h:graphicImage value="/img/imgIcon/arrow_left.png" style=" width : 16px;"/><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">volver</span></rich:toolTip></s:link>&#160;&#160;<h:commandButton  value="Actualizar" action="#{statusRegistroAction.update}" image="/img/imgIcon/disc.png" rendered="#{parametroBuscarAction.permisoActualizar}"  ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Actualizar</span></rich:toolTip></h:commandButton>&#160;&#160;  </td></tr>	
+    </table>
+ </h:form>
+</html>

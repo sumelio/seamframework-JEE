@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:jr="http://jasperreports.sourceforge.net/jr"
+      xmlns:rich="http://richfaces.org/rich">
+<head>
+<link rel="stylesheet" type="text/css" href="../../css/estilosLeasing1.css"/>
+</head>
+<rich:panel id="content"  style="width:100%;" >
+ 
+ <span class="errors" style="text-align: center;" ><div style="text-align: center;"><h:messages id="errores"  styleClass="errors" globalOnly="true"/></div> </span>
+ <h5>Generar Reportes</h5>
+  <h:form  id="buscarPar" styleClass="form" >
+    
+      <div align="center"> 
+        <s:link view="/seam/servlet/"   >
+		   <h:graphicImage value="/img/imgIcon/MS_Excel_50x50.png" /> 
+		  <f:param name="component" value="printSomething"/>
+	    </s:link>
+	 
+	 </div>
+	     <a:status>
+          <f:facet name="start">
+             <h:graphicImage value="/img/imgIcon/spinner.gif"  />
+          </f:facet>
+      </a:status>
+   </h:form>
+ </rich:panel>
+ 
+    <rich:modalPanel id="ajaxLoadingModalBox" minHeight="100" minWidth="200" height="80" width="400" zindex="100">
+	  <div align="center"><h:outputText value="Generando Reporte..."/></div> 
+	  <div align="center"><h:graphicImage value="/img/imgIcon/spinner.gif"  /></div>
+    </rich:modalPanel>
+
+
+</html>

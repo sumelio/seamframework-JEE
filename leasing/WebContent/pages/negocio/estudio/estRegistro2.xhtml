@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"   
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:c="http://java.sun.com/jstl/core">
+<head>
+<link rel="stylesheet" type="text/css" href="../../../css/estilosLeasing1.css"/>
+</head>
+<body>
+<table align="center" border="0"  bordercolor="#FFFFFF" bgcolor="#FFFFFF"  cellpadding="2" cellspacing="2" class="styleTables"  width="500px;" style=" width : 500px;">
+ <tr>
+  <td>
+  <h:form id="frmCrear2" >
+      <table align="center" border="0"  bordercolor="#FFFFFF" bgcolor="#FFFFFF"  cellpadding="2" cellspacing="2" class="styleTables"    style=" width : 100%;">
+	   <tr><td colspan="4"><div align="center"><b>Formulario de Estudio</b></div></td></tr>
+	    <tbody>	
+	     <tr style=" height : 6px;"><td  bgcolor="#DDE9DC" colspan="4">&nbsp;</td></tr> 
+		 <tr><td  bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value="Id Negocio"    /></td><td style=" width : 160px;"><h:outputText   id="mcomfindNegocio" value="#{estRegistroAction.mcomEstudioReg.estId}"    ><a:support event="onkeyup" actionListener="#{estRegistroAction.findNegocioId}" reRender="searchResults" /></h:outputText></td><td   style=" width : 30%;"><h:outputText value=" "         /></td><td colspan="3" style=" width : 30%;">  <a:status><f:facet name="start"><h:graphicImage value="/img/imgIcon/spinner.gif"  /></f:facet></a:status></td></tr>
+        </tbody>
+      </table>
+     
+       <a:outputPanel id="searchResults" rendered="true" >
+           <table align="center" border="0"  bordercolor="#FFFFFF" bgcolor="#FFFFFF"  cellpadding="2" cellspacing="2" class="styleTables"   style=" width : 100%;">
+	      <tbody>	
+          <tr><td  bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value="Tipo Id.     Cliente"    /></td>           <td style=" width : 30%;"> <h:outputText value="#{estRegistroAction.mcomEstudioReg.mcomPersonas.mpaValoresByFkPersonasValoresTipoid.varNombre}" /></td><td bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value="N° del Id. del Cliente"    /></td><td style=" width : 30%;"><h:outputText  id="mcomPersonas__" value="#{estRegistroAction.mcomEstudioReg.mcomPersonas.id.perIdentificacion }"      /><br/></td></tr>
+	      <tr><td  bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value="Nombre de Cliente"    /></td> <td colspan="1"><h:outputText value="#{estRegistroAction.mcomEstudioReg.mcomPersonas.perNombres}"    /></td><td  bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value="Apellidos del Cliente"    /></td> <td colspan="3"><h:outputText value="#{estRegistroAction.mcomEstudioReg.mcomPersonas.perApellidos}"    /></td></tr>
+         </tbody>
+        </table>
+       </a:outputPanel>
+     </h:form> 
+    </td>
+ </tr>
+ <tr>
+   <td>
+      <h:form id="frmCrear" >
+		  <table align="center" border="0"   bordercolor="#FFFFFF" bgcolor="#FFFFFF"  cellpadding="2" cellspacing="2" class="styleTables"  width="500px;" style=" width : 500px;">
+			<tbody>
+			<tr style="height:5px"><td colspan="4"><hr></hr></td></tr>
+			
+		    
+		       
+            <tr><td  bgcolor="#DDE9DC" ><h:outputText value="  "         /></td><td> <rich:message id="meassage_estVerificacionInformacion"  for="estVerificacionInformacionn" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td><td  bgcolor="#DDE9DC" ><h:outputText value="  "         /></td><td> <rich:message id="meassage_estFechaReproceso"  for="estFechaReproceso" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Verificación Información"    /></td><td> <rich:calendar  id="estVerificacionInformacion" value="#{estRegistroAction.mcomEstudioReg.estVerificacionInformacion}"  disabled="#{estRegistroAction.enviarOpericiones }"  size="17" maxlength="15"  datePattern="dd/MM/yyyy hh:mm a" event="onblur"  style="width: 8px;height: 8px;" /></td><td bgcolor="#DDE9DC"><h:outputText value="Fecha de Reproceso"    /></td><td> <rich:calendar  id="estFechaReproceso" value="#{estRegistroAction.mcomEstudioReg.estFechaReproceso}"  disabled="#{estRegistroAction.enviarOpericiones }"  size="17" maxlength="15"  datePattern="dd/MM/yyyy hh:mm a" event="onblur"  style="width: 8px;height: 8px;" /></td></tr>
+			
+			 
+			
+			<tr><td  bgcolor="#DDE9DC" style="width: 20%;"><h:outputText value=" "         /></td><td> <rich:message id="message_mpaValoresByFkEstudioValoresCausaldevol"  for="mpaValoresByFkEstudioValoresCausaldevol" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td> <td  bgcolor="#DDE9DC" ><h:outputText value="  "         /></td><td> <rich:message id="message_estDevueltoComercial1"  for="estDevueltoComercial1" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC" ><h:outputText value="Causal devolución"    /></td><td><rich:comboBox  id="mpaValoresByFkNegocioValoresTipobien"  value="#{estRegistroAction.mcomEstudioReg.mpaValoresByFkEstudioValoresCausaldevol}"   disabled="#{estRegistroAction.enviarOpericiones }"    converter="#{listasAction.converterCausaldesi1}" requiredMessage="Seleccione un causal" label="Persona" required="true"  defaultLabel="Seleccione un causal"> <s:selectItems     value="#{listasAction.causaldesi1}"       var="m" label="#{m.varNombre}"   /></rich:comboBox> </td><td bgcolor="#DDE9DC"><h:outputText value="Devuelto Comercial1"    /></td><td style=" width : 40%;"><rich:calendar  id="estDevueltoComercial1" value="#{estRegistroAction.mcomEstudioReg.estDevueltoComercial1}"    disabled="#{estRegistroAction.enviarOpericiones }" size="17" maxlength="15"  datePattern="dd/MM/yyyy hh:mm a" event="onblur"  style="width: 8px;height: 8px;" /></td></tr>
+			
+		
+		   
+		   	
+			<tr><td  bgcolor="#DDE9DC" style="width: 20%;" ><h:outputText value=" "         /></td><td> <rich:message id="message_estDevueltoComercial2"  for="estDevueltoComercial2" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td> <td  bgcolor="#DDE9DC" ><h:outputText value="  "         /></td><td> <rich:message id="message_estDevueltoComercial3"  for="estDevueltoComercial3" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC" style="width: 20%;"><h:outputText value="Devuelto Comercial1"    /></td><td><rich:calendar  id="estDevueltoComercial2" value="#{estRegistroAction.mcomEstudioReg.estDevueltoComercial2}"  disabled="#{estRegistroAction.enviarOpericiones }"  size="17" maxlength="15"  datePattern="dd/MM/yyyy hh:mm a" event="onblur"  style="width: 8px;height: 8px;" /></td><td bgcolor="#DDE9DC" style="width: 20%;"><h:outputText value="Devuelto Comercial1"    /></td><td style="width: 30%;"><rich:calendar  id="estDevueltoComercial3" value="#{estRegistroAction.mcomEstudioReg.estDevueltoComercial3}"  disabled="#{estRegistroAction.enviarOpericiones }"   size="17" maxlength="15"  datePattern="dd/MM/yyyy hh:mm a" event="onblur"  style="width: 8px;height: 8px;" /></td></tr>
+			
+		    
+			
+		    <tr> <td  bgcolor="#DDE9DC" style="width: 20%;" ><h:outputText value="  "         /></td><td> <rich:message id="meassage_mpaValoresByFkEstudioValoresCaunega3"  for="mpaValoresByFkEstudioValoresCaunega3" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td><td  bgcolor="#DDE9DC" style="width: 20%;"><h:outputText value=" "         /></td><td> <rich:message id="message_mpaValoresByFkEstudioValoresMarcaseg"  for="mpaValoresByFkEstudioValoresMarcaseg" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC" style="width: 20%;"><h:outputText value="Causal Negación 3"    /></td><td><rich:comboBox  id="mpaValoresByFkEstudioValoresCaunega3"  value="#{estRegistroAction.mcomEstudioReg.mpaValoresByFkEstudioValoresCaunega3}"   disabled="#{estRegistroAction.enviarOpericiones }"    converter="#{listasAction.converterCaunega3}" requiredMessage="Seleccione un causal" label="Persona" required="true"  defaultLabel="Seleccione un causal"> <s:selectItems     value="#{listasAction.caunega3}"       var="m" label="#{m.varNombre}"   /></rich:comboBox> </td><td bgcolor="#DDE9DC" style="width: 20%;"><h:outputText value="Marca seguimiento"    /></td><td style="width: 30%;"><rich:comboBox  id="mpaValoresByFkEstudioValoresMarcaseg" disabled="#{estRegistroAction.enviarOpericiones }"  value="#{estRegistroAction.mcomEstudioReg.mpaValoresByFkEstudioValoresMarcaseg}"       converter="#{listasAction.converterMarcaseg}" requiredMessage="Seleccione una valor" label="Persona" required="true"  defaultLabel="Seleccione un valor"> <s:selectItems     value="#{listasAction.marcaseg}"       var="m" label="#{m.varNombre}"   /></rich:comboBox> </td></tr>
+			
+			<tr><td bgcolor="#DDE9DC" style="width: 20%;"><h:outputText value=" " /></td><td><rich:message id="message_estObservaciones"  for="estObservaciones" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC" style="width: 20%;"><h:outputText value="Observaciones" /></td><td colspan="3"> <h:inputTextarea  id="estObservaciones"    value="#{estRegistroAction.mcomEstudioReg.estObservaciones}"  disabled="#{estRegistroAction.enviarOpericiones }"   style="height : 38px; width : 392px;"><f:validateLength maximum="50"/><a:support event="onblur" /></h:inputTextarea></td></tr>
+		  
+		  <tr><td bgcolor="#DDE9DC" style="width: 20%;"><h:outputText value="Enviar a operaciones" /></td><td> <h:selectBooleanCheckbox  value="#{estRegistroAction.enviarOpericiones }"   > </h:selectBooleanCheckbox></td></tr>
+		  
+		    <tr style="height:5px"><td colspan="4"><hr></hr></td></tr>
+			<tr><td align="center" colspan="4"><h:messages id="errors" globalOnly="true"      styleClass="errors"  /></td></tr>
+			<tr><td  colspan="4" style="text-align: center;"><s:link  id="voverLista" view="/pages/negocio/estudio/estRegistro.xhtml" actionListener="#{estBuscarAction.find()}"     ><h:graphicImage value="/img/imgIcon/arrow_left.png" /><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Atras</span></rich:toolTip></s:link>&#160;&#160;<h:commandButton value="Actualizar"   action="#{estRegistroAction.guardar}"  image="/img/imgIcon/disc.png" rendered="#{estBuscarAction.permisoActualizar}" ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom;color:BLACK;" ><span  style="white-space:nowrap;color:BLACK;">Registrar</span></rich:toolTip></h:commandButton>&#160;  </td></tr>
+		</tbody>
+		</table>
+	</h:form> 
+   </td>
+  </tr>
+ </table>  
+ </body>
+</html>

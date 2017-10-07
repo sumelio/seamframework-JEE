@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:c="http://java.sun.com/jstl/core">
+<head>
+<link rel="stylesheet" type="text/css" href="../../css/estilosLeasing1.css"/>
+
+</head>
+  <h:form  id="frmEditar" >  
+	 <table align="center"  style="height: 80%; width: 100%" width="100%"  border="0"  cellpadding="0" cellspacing="0"  >
+	 <tr> 
+	   <td >
+	     <table width="90%" align="center" border="0"   cellpadding="2" bgcolor="#FFFFFF" bordercolor="#FFFFFF"   cellspacing="2" class="styleTables" >
+	      <tr><td align="center" colspan="4"><b>Operaciones</b></td></tr>
+	      <tr style=" height : 6px;"><td bgcolor="#DDE9DC" colspan="4"></td></tr>
+	      <tr><td bgcolor="#DDE9DC"  ></td><td></td><td bgcolor="#DDE9DC"  ></td><td></td></tr>
+	      <tr style=" height : 38px;"><td bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value="Id" /></td><td style=" width : 30%;"><h:outputText id="operId" value="#{operRegistroAction.moperOperacionesReg.operId}"  /></td><td bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value="Número Ficha" /></td><td style=" width : 30%;" ><h:outputText id="operContRiesgo" value="#{operRegistroAction.moperOperacionesReg.operContRiesgo}"    /></td></tr>
+	      <tr><td bgcolor="#DDE9DC"  ></td><td></td><td bgcolor="#DDE9DC"  ></td><td></td></tr>
+	      <tr style=" height : 38px;"><td bgcolor="#DDE9DC" style=" width : 20%;" ><h:outputText value="Valor solicitado" /></td><td style=" width : 30%;">$&#160;<h:outputText id="operValorSolicitado" value="#{operRegistroAction.moperOperacionesReg.operValorSolicitado}"    /></td><td bgcolor="#DDE9DC" style=" width : 20%;"><h:outputText value="Valor aprobado" /></td><td style=" width : 30%;"><h:outputText id="operValorAprobado" value="#{operRegistroAction.moperOperacionesReg.operValorAprobado}"    /></td></tr>
+	      <tr style=" height : 6px;"><td bgcolor="#DDE9DC" colspan="4"></td></tr>
+	    </table>
+	   </td>
+	 </tr>
+	 <tr style="height: 380px;"><td height="400px" colspan="4" align="left" >
+      <rich:tabPanel headerAlignment="right" id="Tab"  style="width:100%; height : 100px;"> 
+
+	      <rich:tab name="TabT|" label="Actualizar" id="TabOper1"  style="width:100%;height:100px;" ajaxSingle="true">		 	
+	        <iframe name="fTabTparBuscar" id="frameVisor1" frameborder="0"  scrolling="no" src="../../../../../${facesContext.externalContext.requestContextPath}/pages/operaciones/operEditar.seam?preload='0'" width="100%" height="310px">Su explorador no soporta iframes</iframe>
+	   	   </rich:tab>
+	       
+	        <rich:tab name="TabT2" label="Consultar observaciones" id="TabOper2"  style="width:100%;height:100px;" ajaxSingle="true">		 	
+	         <iframe name="fTabTparBuscar" id="frameVisor2" frameborder="0"  scrolling="no" src="../../../../../${facesContext.externalContext.requestContextPath}/pages/operaciones/operConsulta.seam?preload='0'" width="100%" height="310px">Su explorador no soporta iframes</iframe>
+	   	   </rich:tab>
+
+   	   </rich:tabPanel>
+   	   <div align="center"> <s:link action="#{operBuscarAction.find()}"   ><h:graphicImage value="/img/imgIcon/arrow_left.png" style=" width : 16px;"/><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">volver a listado de operaciones</span></rich:toolTip></s:link></div>
+</td>
+</tr>
+	 <tr><td align="center">&nbsp;&nbsp; </td></tr>
+     </table>
+	</h:form>
+</html>

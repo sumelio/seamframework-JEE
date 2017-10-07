@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:c="http://java.sun.com/jstl/core">
+<head>
+<link rel="stylesheet" type="text/css" href="../../../css/estilosLeasing1.css"/>
+</head>
+<body  > 
+    <h:form  id="frmEditar" styleClass="form" > 
+	    
+	      <table align="center" border="0" cellpadding="2" cellspacing="2" class="styleTables">
+		   
+		    <tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="messageusuNombres"  for="usuNombres" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="messageusuApellidos"  for="usuApellidos" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Nombre" /></td><td><h:inputText id="usuNombres" value="#{usuarioEditarAction.msegUsuariosEdit.usuNombres}"  size="31" maxlength="30"   required="true"   ><s:validate></s:validate> </h:inputText></td><td bgcolor="#DDE9DC"><h:outputText value="Apellido:" /></td><td><h:inputText id="usuApellidos"  value="#{usuarioEditarAction.msegUsuariosEdit.usuApellidos}"  size="31" maxlength="30"  required="true"  ><s:validate></s:validate></h:inputText></td></tr>
+		    <tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="messageusuCedula"  for="usuCedula" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="messag_msegEstados"  for="msegEstados" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Número de Documento"/></td><td><h:outputText id="usuCedula" value="#{usuarioEditarAction.msegUsuariosEdit.usuCedula}"  size="13" /></td><td bgcolor="#DDE9DC"><h:outputText value="Estado"/></td><td><rich:comboBox  id="msegEstados"  value="#{usuarioEditarAction.msegUsuariosEdit.msegEstados}"       required="true" converter="#{usuarioEditarAction.converter}" requiredMessage="Seleccione uno estado" label="Estados"><s:selectItems     value="#{usuarioEditarAction.listaEstadosEdit}"    var="m" label="#{m.estNombre}"   /></rich:comboBox></td></tr>
+		    <tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="messageusuUsuario"  for="usuUsuario" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Usuario" /></td><td> <h:inputText id="usuUsuario"   size="31" maxlength="30"  value="#{usuarioEditarAction.msegUsuariosEdit.usuUsuario}" required="true" ><a:support event="onblur"  /></h:inputText> </td><td bgcolor="#DDE9DC"></td></tr>
+		    <tr><td bgcolor="#DDE9DC"></td><td><h:inputHidden  id="usuContrasena" value="#{usuarioEditarAction.msegUsuariosEdit.usuContrasena}"  /> <h:inputHidden  id="verify" value="#{usuarioEditarAction.msegUsuariosEdit.usuContrasena}"  /></td></tr>
+			<tr><td colspan="2"></td></tr>
+			<tr><td colspan="4" align="center" style=" width : 425px;">
+			<!-- Roles -->
+		   <div id="content">
+			 
+			<div class="section" style="width:450px;height:300px;overflow:auto;vertical-align:top;background-color:#ffffff;"> 
+		        <h:outputText  value="No existen Roles" rendered="#{listaRolUsuario != null and listaRolUsuario.rowCount==0}"/>
+		        <h:dataTable id="listaRolUsuario" value="#{listaRolUsuario}" var="hot" rendered="#{listaRolUsuario.rowCount>0}" style="width:300px;"  >
+		         <h:column>
+			      <f:facet name="header"><h:outputText value="Nombre del Rol" /></f:facet>
+			       <div align="left"> #{hot.msegRolusuarios.msegRoles.rolNombreRol}</div>
+		          </h:column>
+		         <h:column>
+			      <f:facet name="header"><h:outputText value="Asignar" /></f:facet>
+			        <div align="center"> <h:selectBooleanCheckbox  value="#{hot.asignar}"  />  </div>
+		          </h:column>
+		          <f:facet name="footer">
+		             <h:outputText value="Rol y Usuarios" />
+		           </f:facet> 
+		         </h:dataTable> 
+		      </div>
+		     </div>  
+		      </td></tr>
+			 
+			<!-- /Roles -->
+			<tr style="height:5px"><td colspan="4"><hr></hr></td></tr>
+			<tr><td align="center" colspan="4"><h:messages id="errors" globalOnly="true"      styleClass="errors"  /></td></tr>
+			<tr><td  colspan="4" style="text-align: center;"><s:link action="/pages/seguridad/usuario/usuLista.xhtml"   ><h:graphicImage value="/img/imgIcon/arrow_left.png" /><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">volver</span></rich:toolTip></s:link>&#160;&#160;<h:commandButton  value="Actualizar" action="#{usuarioEditarAction.updateUsuario}" image="/img/imgIcon/disc.png" rendered="#{usuarioBuscarAction.permisoActualizar}"    ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Actualizar</span></rich:toolTip></h:commandButton>&#160;<s:link action="/pages/seguridad/usuario/usuResetContrasena.xhtml"   ><h:graphicImage value="/img/imgIcon/key.png" /> <rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Cambiar contraseña</span></rich:toolTip></s:link>  </td></tr>	
+    </table>
+ </h:form>
+ </body>
+</html>

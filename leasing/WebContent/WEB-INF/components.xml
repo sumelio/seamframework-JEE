@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<components xmlns="http://jboss.com/products/seam/components"
+            xmlns:ui="http://jboss.com/products/seam/ui"
+            xmlns:core="http://jboss.com/products/seam/core"
+            xmlns:security="http://jboss.com/products/seam/security"
+            xmlns:transaction="http://jboss.com/products/seam/transaction"
+            xmlns:persistence="http://jboss.com/products/seam/persistence"
+	        xmlns:web="http://jboss.com/products/seam/web"
+	        xmlns:framework="http://jboss.com/products/seam/framework"
+	        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation=
+                "http://jboss.com/products/seam/core http://jboss.com/products/seam/core-2.1.xsd
+                 http://jboss.com/products/seam/transaction http://jboss.com/products/seam/transaction-2.1.xsd
+                 http://jboss.com/products/seam/security http://jboss.com/products/seam/security-2.1.xsd
+                 http://jboss.com/products/seam/components http://jboss.com/products/seam/components-2.1.xsd">
+
+   <core:init jndi-pattern="@jndiPattern@"  debug="false" />
+
+    <core:manager conversation-timeout="120000"
+                  concurrent-request-timeout="500"
+                  conversation-id-parameter="cid"/>
+
+    <transaction:ejb-transaction/>
+ 
+ 
+    <security:identity authenticate-method="#{authenticator.authenticate}"/>
+    <persistence:managed-persistence-context 
+            name="entityManager"
+            auto-create="true"
+            persistence-unit-jndi-name="java:/obasEntityManagerFactory"/>
+      
+      
+      
+       <!-- enable Seam for this non-JSF URL pattern -->
+      <web:context-filter url-pattern="/seam/servlet/*"/>
+    
+    
+      <!-- 
+      
+      
+       <component name="org.jboss.seam.ui.entityConverter">
+  |             <property name="entityManager">#{entityManager}</property>
+  |     </component>
+  
+  
+         <transaction:entity-transaction entity-manager="#{em}"/>
+                  
+    <persistence:entity-manager-factory name="bookingDatabase"/>
+    
+    <persistence:managed-persistence-context name="em"
+                               auto-create="true" 
+                    entity-manager-factory="#{bookingDatabase}"/>
+                    
+    <security:identity authenticate-method="#{authenticator.authenticate}"/>  
+   
+      
+      
+    <core:resource-loader>
+    <core:bundle-names>
+        <value>messages_es_CO</value>
+        <value>standard_messages</value>     
+    </core:bundle-names>
+</core:resource-loader>
+    -->
+      <!-- 
+   <event type="org.jboss.seam.notLoggedIn">
+       <action expression="#{redirect.captureCurrentView}"/>
+   </event>
+   <event type="org.jboss.seam.postAuthenticate">
+       <action expression="#{redirect.returnToCapturedView}"/>
+   </event>
+         -->
+   <!-- For use with jBPM pageflow or process management -->
+   <!--  
+   <core:jbpm>
+      <core:process-definitions></core:process-definitions>
+      <core:pageflow-definitions></core:pageflow-definitions>
+   </core:jbpm>
+  
+    <component name="org.jboss.seam.ui.converter.EntityConverter" scope="SESSION">
+    <property name="session">#{drsession}</property>
+  </component>
+   
+    
+    <core:init debug="true" jndi-pattern="@jndiPattern@"/> 
+  <core:manager conversation-timeout="120000" 
+                concurrent-request-timeout="500"
+                conversation-id-parameter="cid"/>
+
+  <persistence:managed-hibernate-session name="hibernateSession"
+  								  auto-create="true"
+										scope="session"
+							  session-factory="#{hibernateSessionFactory}"/>
+  <transaction:hibernate-transaction session="#{hibernateSession}"/>
+  <transaction:ejb-transaction/>
+  <ui:hibernate-entity-loader session="#{hibernateSession}"/>
+  <component name="org.jboss.seam.ui.converter.EntityConverter">
+	  <property name="session">#{hibernateSession}</property>
+	</component>
+   
+   
+
+     <component name="org.jboss.seam.ui.converter.EntityConverter">
+	  <property name="session">#{hibernateSession}</property>
+	</component>   
+  -->
+</components>

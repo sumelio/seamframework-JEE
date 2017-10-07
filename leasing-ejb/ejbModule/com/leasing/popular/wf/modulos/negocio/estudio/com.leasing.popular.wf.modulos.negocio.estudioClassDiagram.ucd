@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="com.leasing.popular.wf.modulos.negocio.estudioClassDiagram" id="{UMLID=_ilT4EUAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio}" metadata="uml2-1.0" initialized="true" scrolledY="499" tag="10" key="3230303730363239206C656173696E672D656A62" PSMCodeGenerationPreferences="66">
+  <children xsi:type="editmodel:InterfaceEditModel" name="EstBuscar" location="507,50" size="180,439" id="{UMLID=_i8N8MEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar}">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="159,378">
+      <children xsi:type="editmodel:MethodEditModel" name="getPageSize" size="100,16" id="{UMLID=_i9QeBEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#getPageSize()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setPageSize" size="100,16" id="{UMLID=_i9aPBUAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#setPageSize(I)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getSearchStringEstudio" size="153,16" id="{UMLID=_i9aPAkAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#getSearchStringEstudio()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setSearchStringEstudio" size="153,16" id="{UMLID=_i80ZI0AGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#setSearchStringEstudio(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getSearchPatternEstudio" size="159,16" id="{UMLID=_i8g3I0AGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#getSearchPatternEstudio()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="find" size="58,16" id="{UMLID=_i89jEUAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#find()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPage" size="79,16" id="{UMLID=_i80ZIEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#getPage()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="firstPage" size="83,16" id="{UMLID=_i9QeA0AGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#firstPage()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="lastPage" size="81,16" id="{UMLID=_i89jEEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#lastPage()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="backPage" size="87,16" id="{UMLID=_i8qoIUAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#backPage()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="nextPage" size="85,16" id="{UMLID=_i9HUEEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#nextPage()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getQueryCantidadTotal" size="149,16" id="{UMLID=_i89jEkAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#getQueryCantidadTotal()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isNextPageAvailable" size="138,16" id="{UMLID=_i8g3IEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#isNextPageAvailable()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="eliminarEstudio" size="111,16" id="{UMLID=_i8qoIEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#eliminarEstudio()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getDeleteEstudio" size="120,16" id="{UMLID=_i9HUFEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#getDeleteEstudio()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setDeleteEstudio" size="120,16" id="{UMLID=_i9HUF0AGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#setDeleteEstudio(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isPermisoConsulta" size="128,16" id="{UMLID=_i8qoIkAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#isPermisoConsulta()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isPermisoInsertar" size="123,16" id="{UMLID=_i9HUEUAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#isPermisoInsertar()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isPermisoEliminar" size="122,16" id="{UMLID=_i9QeAEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#isPermisoEliminar()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isPermisoActualizar" size="135,16" id="{UMLID=_i9QeCEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#isPermisoActualizar()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="destroy" size="77,16" id="{UMLID=_i9QeB0AGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscar#destroy()}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="EstBuscarAction" location="50,50" size="180,742" stereotype="Service, andromda_service_type" id="{UMLID=_jAFvkEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction}">
+    <children xsi:type="editmodel:CompartmentEditModel" size="126,198">
+      <children xsi:type="editmodel:AttributeEditModel" name="em" size="43,16" id="{UMLID=_jCduJEAGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="facesMessages" size="107,16" id="{UMLID=_jB34SUAGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="listaEstudio" size="89,21" id="{UMLID=_jCduJ0AGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="msegRoles" size="88,21" id="{UMLID=_jBk9UEAGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="searchStringEstudio" size="126,16" id="{UMLID=_jBuHSkAGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="pageSize" size="74,16" id="{UMLID=_jBuHRUAGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="page" size="53,16" id="{UMLID=_jCduIkAGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="mcomEstudioActionDAO" size="152,21" id="{UMLID=_jBuHR0AGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="deleteEstudio" size="93,16" id="{UMLID=_jB34QUAGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="queryCantidadTotal" size="121,16" id="{UMLID=_jBuHQUAGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="permisoConsulta" size="109,16" id="{UMLID=_jB34RUAGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="permisoInsertar" size="104,16" id="{UMLID=_jB34R0AGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="permisoEliminar" size="103,16" id="{UMLID=_jBuHQ0AGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="permisoActualizar" size="116,16" id="{UMLID=_jB34Q0AGEd-PsqPoqWFifA}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="159,396">
+      <children xsi:type="editmodel:MethodEditModel" name="find" size="58,16" id="{UMLID=_jC6aEkAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#find()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPage" size="79,16" id="{UMLID=_jDg3AUAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#getPage()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="nextPage" size="85,16" id="{UMLID=_jDELFEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#nextPage()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="firstPage" size="83,16" id="{UMLID=_jDg3BEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#firstPage()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="lastPage" size="81,16" id="{UMLID=_jCnfJUAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#lastPage()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="backPage" size="87,16" id="{UMLID=_jDELGEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#backPage()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="queryEstudio" size="103,16" id="{UMLID=_jDg3BUAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#queryEstudio()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getQueryCantidadTotal" size="149,16" id="{UMLID=_jCxQIEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#getQueryCantidadTotal()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getSearchPatternEstudio" size="159,16" id="{UMLID=_jDELEUAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#getSearchPatternEstudio()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isNextPageAvailable" size="138,16" id="{UMLID=_jDNVAEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#isNextPageAvailable()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getPageSize" size="100,16" id="{UMLID=_jCxQKUAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#getPageSize()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setPageSize" size="100,16" id="{UMLID=_jDXGAkAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#setPageSize(I)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getSearchStringEstudio" size="153,16" id="{UMLID=_jC6aE0AGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#getSearchStringEstudio()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setSearchStringEstudio" size="153,16" id="{UMLID=_jCxQJkAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#setSearchStringEstudio(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="eliminarEstudio" size="111,16" id="{UMLID=_jDELGUAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#eliminarEstudio()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getDeleteEstudio" size="120,16" id="{UMLID=_jDXGBUAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#getDeleteEstudio()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setDeleteEstudio" size="120,16" id="{UMLID=_jCnfIkAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#setDeleteEstudio(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isPermisoConsulta" size="128,16" id="{UMLID=_jDELFUAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#isPermisoConsulta()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isPermisoInsertar" size="123,16" id="{UMLID=_jDNVBEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#isPermisoInsertar()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isPermisoEliminar" size="122,16" id="{UMLID=_jCxQI0AGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#isPermisoEliminar()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isPermisoActualizar" size="135,16" id="{UMLID=_jDXGCEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#isPermisoActualizar()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="destroy" size="77,16" id="{UMLID=_jDNVA0AGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstBuscarAction#destroy()}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true"/>
+  </children>
+  <children xsi:type="editmodel:InterfaceEditModel" name="EstRegistro" location="50,842" size="164,331" id="{UMLID=_jUUTIEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistro}">
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="143,270">
+      <children xsi:type="editmodel:MethodEditModel" name="getMcomEstudioReg" size="137,16" id="{UMLID=_jV9R40AGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistro#getMcomEstudioReg()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setMcomEstudioReg" size="137,16" id="{UMLID=_jU6wE0AGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistro#setMcomEstudioReg(Lcom.leasing.popular.wf.table.negocio.estudio.McomEstudio;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setVerify" size="84,16" id="{UMLID=_jWHC50AGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistro#setVerify(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="seleccionEstudio" size="121,16" id="{UMLID=_jWQM1UAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistro#seleccionEstudio(Lcom.leasing.popular.wf.table.negocio.estudio.McomEstudio;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getVerify" size="84,16" id="{UMLID=_jWHC40AGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistro#getVerify()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isRegistered" size="100,16" id="{UMLID=_jU6wEEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistro#isRegistered()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="invalid" size="70,16" id="{UMLID=_jWHC5kAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistro#invalid()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="guardar" size="78,16" id="{UMLID=_jUw_FkAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistro#guardar()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="nuevo" size="70,16" id="{UMLID=_jWHC4UAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistro#nuevo()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isEdicion" size="82,16" id="{UMLID=_jUw_E0AGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistro#isEdicion()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="findNegocioId" size="105,16" id="{UMLID=_jWHC4EAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistro#findNegocioId()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="siguiente" size="83,16" id="{UMLID=_jUw_EEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistro#siguiente()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isEnviarOpericiones" size="136,16" id="{UMLID=_jWQM0kAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistro#isEnviarOpericiones()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setEnviarOpericiones" size="143,16" id="{UMLID=_jV9R4EAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistro#setEnviarOpericiones(Z)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="destroy" size="77,16" id="{UMLID=_jWHC4kAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistro#destroy()}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="EstRegistroAction" location="280,50" size="177,536" stereotype="Service, andromda_service_type" id="{UMLID=_jYMGgEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistroAction}">
+    <children xsi:type="editmodel:CompartmentEditModel" size="117,108">
+      <children xsi:type="editmodel:AttributeEditModel" name="em" size="43,16" id="{UMLID=_ja3nFEAGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="facesMessages" size="107,16" id="{UMLID=_jaRKI0AGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="mcomEstudioReg" size="117,21" id="{UMLID=_jbAxAEAGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="verify" size="57,16" id="{UMLID=_ja3nEEAGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="mcomEstudioActionDAO" size="152,21" id="{UMLID=_ja3nEkAGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="mcomNegocioActionDAO" size="156,21" id="{UMLID=_jaIAMEAGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="registered" size="78,16" id="{UMLID=_jat2EkAGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="enviarOpericiones" size="117,16" id="{UMLID=_jaRKIUAGEd-PsqPoqWFifA}"/>
+      <children xsi:type="editmodel:AttributeEditModel" name="isEdicion" size="71,16" id="{UMLID=_jaIAM0AGEd-PsqPoqWFifA}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="143,280">
+      <children xsi:type="editmodel:MethodEditModel" name="nuevo" size="70,16" id="{UMLID=_jbKiAkAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistroAction#nuevo()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="seleccionEstudio" size="121,16" id="{UMLID=_jbKiB0AGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistroAction#seleccionEstudio(Lcom.leasing.popular.wf.table.negocio.estudio.McomEstudio;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="siguiente" size="83,16" id="{UMLID=_jbAxAkAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistroAction#siguiente()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="guardar" size="78,16" id="{UMLID=_jbUTCEAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistroAction#guardar()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="invalid" size="70,16" id="{UMLID=_jbKiBkAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistroAction#invalid()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isRegistered" size="100,16" id="{UMLID=_jbUTBUAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistroAction#isRegistered()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getVerify" size="84,16" id="{UMLID=_jbdc9UAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistroAction#getVerify()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setVerify" size="84,16" id="{UMLID=_jbKiA0AGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistroAction#setVerify(Ljava.lang.String;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="findNegocioId" size="105,16" id="{UMLID=_jbdc9EAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistroAction#findNegocioId()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isEdicion" size="82,16" id="{UMLID=_jbdc8UAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistroAction#isEdicion()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="getMcomEstudioReg" size="143,21" id="{UMLID=_jbUTAkAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistroAction#getMcomEstudioReg()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setMcomEstudioReg" size="143,21" id="{UMLID=_jbdc-EAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistroAction#setMcomEstudioReg(Lcom.leasing.popular.wf.table.negocio.estudio.McomEstudio;)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="isEnviarOpericiones" size="136,16" id="{UMLID=_jbnN8kAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistroAction#isEnviarOpericiones()}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="setEnviarOpericiones" size="143,16" id="{UMLID=_jbAxBUAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistroAction#setEnviarOpericiones(Z)}"/>
+      <children xsi:type="editmodel:MethodEditModel" name="destroy" size="77,16" id="{UMLID=_jbdc8EAGEd-PsqPoqWFifA,JavaID=com.leasing.popular.wf.modulos.negocio.estudio/EstRegistroAction#destroy()}"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <classifierPreferences xsi:type="editmodel:UMLClassDiagramClassifierPreference" attributeSorter="Natural" methodSorter="Natural" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showMethods="true" showAttributes="true" showLiterals="true" ShowInnerEntity="true"/>
+  </children>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=1" autoName="false"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="14,14" gridOrigin="630,952" rulerUnit="cm" gridShow="true">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" attributeSorter="Natural" methodSorter="Natural" shortPackageNameFormat="true" showClassStereotype="true" showPackageStereotype="true" innerClassSorter="Natural" showPrivateAttributes="true" showProtectedAttributes="true" showPublicAttributes="true" showPackageAttributes="true" showStaticAttributes="true" showProtectedMethods="true" showPublicMethods="true" showPackageMethods="true" showPrivateMethods="true" showStaticMethods="true" showProtectedInnerClasses="true" showPublicInnerClasses="true" showPackageInnerClasses="true" showPrivateInnerClasses="true" showStaticInnerClasses="true" showInterfaceStereotype="true" showMethods="true" showAttributes="true" showLiterlas="true" showInnerEntity="true"/>
+</editmodel:ClassDiagramEditModel>

@@ -1,0 +1,77 @@
+/* Setup defaults since variable in browsers
+----------------------------------------------- */
+body, div, span, dd, dt, dl, img, ul, ol, li, p, h1, h2, h3, h4, h5, form, hr, fieldset {
+	margin: 0;
+	padding: 0;
+}
+/* Element Defaults
+----------------------------------------------- */
+html {
+	height: 100%;
+	background-color: #FFFFFF;
+	color: black;
+	background: white;
+	 
+	
+}
+
+body { 
+	background: white;
+}
+
+
+.errors {
+    font-size: 12px;  
+	text-align: center;
+	color: #F90000;
+} 
+.errors div {
+	text-align: left;
+}
+.errors span {
+	text-align: left;
+}
+.errors input {
+	border: 1px solid #600;
+}
+.errors ul {
+	list-style: none;
+}
+
+.button{
+ width: 70px;
+ font-size: 11px;
+ border: 2px;
+}
+ 
+ /*
+a {
+font-family: Trebuchet MS;
+font-size: 12px;
+color: #FFFFFF;
+}
+a:link {
+text-decoration: none;
+}
+a:visited {
+text-decoration: none;
+color: #FFFFFF;
+}
+a:hover {
+text-decoration: none;
+color: #FFFFFF;
+}
+a:active {
+text-decoration: none;
+color: #FFFFFF;
+} */
+
+.readonlyTextArea{
+border: 1;
+width : 394px;
+height : 102px;
+cursor: pointer;
+color: black;
+	border-style: solid;
+	border-width: thin
+}

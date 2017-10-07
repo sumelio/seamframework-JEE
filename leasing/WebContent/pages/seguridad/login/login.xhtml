@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+ 	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:a="http://richfaces.org/a4j"
+	  xmlns:rich="http://richfaces.org/rich"
+	  xmlns:s="http://jboss.com/products/seam/taglib">
+	  <head>
+	<link rel="stylesheet" type="text/css" href="../../../css/estilosLeasing.css"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>#{msg.titulo}</title>
+	
+ </head>
+<ui:composition template="../../templates/login/loginTemplate.xhtml">
+<f:loadBundle basename=" resourcesValidacion" var="msg" />
+<!-- content -->
+
+ <ui:define name="bodyLogin">  <a:form id="LoginBean"  >  <a:region id="editando">
+ 
+   		        <div style="height : 11px;"><h:message id="message"  for="username"   styleClass="errors" showSummary="true" showDetail="false" /></div>
+                
+                <div><h:outputLabel for="username"  value='#{msg.loginlogin}'/></div>  
+                <div><h:inputText id="username" value="#{identity.username}" maxlength="15" size="20"  required="true" requiredMessage='#{msg.login_usuario}'   ><f:validator validatorId="validar" /></h:inputText></div>
+               <div style="h; height : 11px;"><h:message id="message2"  for="userpasswordLogin" styleClass="errors" showSummary="true" showDetail="false" /></div>
+               
+                <div><h:outputLabel for="userpasswordLogin" value='#{msg.password}'/></div>   
+                <div><h:inputSecret id="userpasswordLogin"  maxlength="10" size="20"  required="true" requiredMessage='#{msg.login_contrasena}'  ><s:validate></s:validate> </h:inputSecret></div>
+                 <h:inputHidden  id="userpassword" value="#{identity.password}" /> 
+                <div style="height : 22px;" ><h:messages globalOnly="true"  styleClass="errors" /> </div>
+                <div><h:commandButton id="login"  onclick="encriptar();Richfaces.showModalPanel('ajaxLoadingModalBox',{width:100, top:300});"  action="#{identity.login}"   value='#{msg.inicio}' styleClass="button"  >
+               
+                
+      
+            </h:commandButton >
+            </div>
+       <!-- 
+            <a:status for="editando" onstart="Richfaces.showModalPanel('ajaxLoadingModalBox',{width:100, top:400})"
+onstop="Richfaces.hideModalPanel('ajaxLoadingModalBox')"></a:status> -->
+</a:region>
+          </a:form>
+          
+          <rich:modalPanel id="ajaxLoadingModalBox" minHeight="100"
+				minWidth="200" height="80" width="400" zindex="100">
+	<h2><div align="center"><h:outputText value="Validando..."/></div> </h2>
+	 <h2><div align="center"><h:graphicImage value="/img/imgIcon/spinner.gif"  /></div> </h2>
+    
+	
+</rich:modalPanel>
+</ui:define>
+  <ui:define name="textFooter"><div class="textoNegro"><h:outputLabel id="msgleasing" value='#{msg.msgleasing}'/></div></ui:define>
+ </ui:composition>
+</html>
+
+

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:c="http://java.sun.com/jstl/core"  
+      xmlns:rich="http://richfaces.org/rich">
+<head>
+<link rel="stylesheet" type="text/css" href="../../css/estilosLeasing1.css"/>
+<script type="text/javascript">
+ function verObserv(staNombre, observ)
+ {
+ try{
+        Richfaces.showModalPanel('panelConsulta',{width:430, height:260, top:25});
+       // document.forms['frmConsulta'].elements['frmConsulta:staNombre'].innerHTML  = " " + staNombre;
+        document.forms['frmConsulta'].elements['frmConsulta:observ'].value = observ.replace(/_ENTER_/g,'\n') ;
+       
+      
+ }catch(e){
+	   txt="Tenemos un error en esta pagina.\n\n";
+	   txt+="Error descripcion: " + e + "\n\n";
+	   txt+="Click OK para continuar.\n\n";
+	   alert(txt);
+	} 
+  }
+
+</script>
+</head>
+<rich:panel id="content"  style="width:100%;" >
+    
+<a:outputPanel id="searchResults" rendered="true" >
+  <div class="section" align="center"> 
+  <h:outputText  value="No existen Operaciones" rendered="#{operRegistroAction.listaObservaciones == null or operRegistroAction.listaObservaciones.size ==0}"/>
+   <rich:dataTable id="listaObservaciones" value="#{operRegistroAction.listaObservaciones}" var="hotPar" rendered="true" style="width:70%">
+         <h:column>
+	  <f:facet name="header"><h:outputText value="Fecha" /></f:facet>
+	  <div  align="left"><h:outputFormat id="operFechaEntrega"  value="{0,date,MM/dd/yyyy hh:mm:ss a}"   size="17" maxlength="15"    >  <f:param value="#{hotPar.operFecha}"></f:param></h:outputFormat> </div>
+	  </h:column>
+	  
+	  <h:column>
+	  <f:facet name="header"><h:outputText value="Estado" /></f:facet>
+	  <div  align="left"> #{hotPar.moperStatus.staNombre}</div>
+	  </h:column>
+     
+ 	  <h:column>
+	    <f:facet name="header"><h:outputText value="" /></f:facet>
+	      <div align="center" >
+	         <a:commandLink    onclick="javascript:verObserv('#{hotPar.moperStatus.staNombre}','#{hotPar.obsObservaciones}')"     >
+			 
+	         <h:graphicImage value="/img/imgIcon/report2.png"/>
+               <rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom">
+                 <span  style="white-space:nowrap;color:BLACK;">Consultar Observaciones</span>
+               </rich:toolTip>
+            </a:commandLink>
+             <h:graphicImage value="/img/imgIcon/whites.png" />
+        
+	        </div>
+		   </h:column> 
+		  <f:facet name="footer">
+         <h:outputText value="Observaciones de Operaciones" />
+       </f:facet>    
+      </rich:dataTable> 
+     </div>
+   </a:outputPanel>
+    
+
+ 
+  <!-- rich:modalPanel -->
+  <rich:modalPanel id="panelConsulta"    >
+        <f:facet name="header">
+            <h:panelGroup>
+                <h:outputText   value="Observacion estado "></h:outputText>
+            </h:panelGroup>
+        </f:facet>
+        <f:facet name="controls">
+            <h:panelGroup>
+                <h:graphicImage value="/img/imgIcon/close.png" style="cursor:pointer" id="hidelink2">
+                  <rich:componentControl for="panelConsulta" attachTo="hidelink2" operation="hide" event="onclick"/>
+                  </h:graphicImage>
+            </h:panelGroup>
+        </f:facet>
+        <h:form  id="frmConsulta" styleClass="form" >
+         <table>
+          <tr><td> 
+          <span    id="staNombre"  ></span>
+         </td></tr>
+         <tr><td>
+         <h:inputTextarea  id="observ"       readonly="true" style=" width : 400px; height : 200px;cursor:pointer;" ></h:inputTextarea>
+         </td></tr>
+         </table>
+       </h:form>
+     </rich:modalPanel>
+   <!-- /rich:modalPanel -->
+   
+    </rich:panel>
+ 
+ 
+</html>

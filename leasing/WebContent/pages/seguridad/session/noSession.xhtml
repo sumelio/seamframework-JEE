@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:s="http://jboss.com/products/seam/taglib"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    template="../../templates/template/Template.xhtml">
+
+    <ui:param name="showGlobalMessages" value="false"/>
+    <ui:define name="bodyLogin">
+  <h:form id="frmNoSession" >
+   <table width="" style="width : 327px; height : 186px;">
+     <tr style=" height : 63px;"><td align="center" valign="top" ><b>La sesión ha cadudaco o (el) ID de (la) sesión no (es) válido</b></td></tr>
+     <tr><td align="center" valign="top" >
+     <s:link view="/pages/seguridad/login/login.xhtml" target="_blank"  styleClass="link"  >
+		  <b>Para ir a la página de inicio haga click aquí</b> 
+	    </s:link>
+    </td></tr>
+     </table>
+   </h:form>
+  </ui:define>
+</ui:composition>

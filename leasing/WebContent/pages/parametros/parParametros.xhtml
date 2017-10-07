@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns:rich="http://richfaces.org/rich">
+<head>
+</head>  
+  
+   <rich:tabPanel headerAlignment="right" id="Tab" style="width:100%;"> 
+    
+   
+   	
+    <rich:tab name="TabT" label="Parametro" id="TabParametro"  style="width:100%;" ajaxSingle="true">		 	
+     <iframe name="fTabTparBuscar" id="frameVisor" frameborder="0"  scrolling="no" src="../../../../../${facesContext.externalContext.requestContextPath}/pages/parametros/parametro/parLista.seam?preload='0'" width="100%" height="660px">Su explorador no soporta iframes</iframe>
+   	</rich:tab>
+   	
+  <rich:tab name="TabPar" label="Valores" id="TabValores"  style="width:100%;" ajaxSingle="true">		 	
+     <iframe name="fTabParBuscar" id="frameVisor2" frameborder="0"  scrolling="no" src="../../../../../${facesContext.externalContext.requestContextPath}/pages/parametros/valores/varLista.seam?preload='0'" width="100%" height="660px">Su explorador no soporta iframes</iframe>
+   	</rich:tab>
+  
+  <rich:tab name="TabToper" label="Status" id="TabStatus"  style="width:100%;" ajaxSingle="true">		 	
+     <iframe name="fTabToper" id="frameVisor3" frameborder="0"  scrolling="no" src="../../../../../${facesContext.externalContext.requestContextPath}/pages/parametros/status/staLista.seam?preload='0'" width="100%" height="660px">Su explorador no soporta iframes</iframe>
+   	</rich:tab> 	
+   	
+ </rich:tabPanel>
+</html>

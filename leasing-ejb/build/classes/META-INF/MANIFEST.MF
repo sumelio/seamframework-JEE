@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Class-Path: antlr-runtime.jar 
+ drools-compiler.jar 
+ drools-core.jar 
+ jboss-el.jar 
+ jbpm-jpdl.jar 
+ lib/commons-beanutils.jar 
+ lib/commons-digester.jar 
+ lib/jboss-el.jar 
+ lib/richfaces-api.jar 
+ richfaces-api.jar 
+ mvel14.jar 
+ testng.jar 
+ leasing.wf-ear.jar
+

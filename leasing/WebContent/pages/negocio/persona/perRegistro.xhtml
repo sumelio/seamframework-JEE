@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a="http://richfaces.org/a4j"
+      xmlns:s="http://jboss.com/products/seam/taglib"
+      xmlns:c="http://java.sun.com/jstl/core">
+<head>
+<link rel="stylesheet" type="text/css" href="../../../css/estilosLeasing1.css"/>
+<script language="javascript" src="../../../scripts/md5.js" />
+<script>
+	function encriptar(){
+     try{
+		//alert(document.forms['frmCrear'].elements['frmCrear:usuContrasenaInput'].value);
+		document.forms['frmCrear'].elements['frmCrear:usuContrasena'].value = hex_md5(document.forms['frmCrear'].elements['frmCrear:usuContrasenaInput'].value);
+		document.forms['frmCrear'].elements['frmCrear:verify'].value = hex_md5(document.forms['frmCrear'].elements['frmCrear:verifyInput'].value);
+	//	alert(document.forms['frmCrear'].elements['frmCrear:verify'].value+ " - " + document.forms['frmCrear'].elements['frmCrear:usuContrasena'].value);
+	 }catch(e){
+		   txt="Tenemos un error en esta pagina.\n\n";
+		   txt+="Error descripcion: " + err.description + "\n\n";
+		   txt+="Click OK para continuar.\n\n";
+		   alert(txt);
+		} 
+		
+	}
+</script>	
+</head>
+ <h:form id="frmCrear" >
+		  <table align="center" border="0" cellpadding="2" bgcolor="#FFFFFF" bordercolor="#FFFFFF"   cellspacing="2" class="styleTables" >
+			<thead><td colspan="4" style="text-align:  center;font-weight: bold;">Formulario de Persona</td></thead>
+			<tbody>
+			<tr style=" height : 6px;"><td  bgcolor="#DDE9DC" colspan="4">&nbsp;</td></tr> 
+			
+			<tr><td    style="width:100px;"><h:outputText value=" "    /></td><td style=" width : 180px;"><h:outputText value=" "    /></td><td  style=" width : 100px;"><h:outputText value=" "    /></td><td   style=" width : 180px;"><h:outputText value=" "    /></td></tr>
+			 
+			<tr><td bgcolor="#DDE9DC" ><h:outputText value=" "         /></td><td> <rich:message id="messageperTipoIdentificacion"  for="mpaValoresByFkPersonasValoresTipoid" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td><td bgcolor="#DDE9DC" ><h:outputText value=" "         /></td><td> <rich:message id="messageperIdentificacion"  for="perIdentificacion" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Tipo de Identificación"    /></td><td><rich:comboBox  id="mpaValoresByFkPersonasValoresTipoid"  value="#{perRegistroAction.mcomPersonasReg.mpaValoresByFkPersonasValoresTipoid}"       converter="#{listasAction.converterTipoId}" requiredMessage="Seleccione un valor" label="Persona" required="true"  defaultLabel="Seleccione un tipo"  enableManualInput="false"  rendered="#{! perRegistroAction.edicion}" > <s:selectItems     value="#{listasAction.listaTipoId}"       var="m" label="#{m.varNombre}"   /></rich:comboBox><h:outputText value="#{perRegistroAction.mcomPersonasReg.mpaValoresByFkPersonasValoresTipoid.varNombre }" rendered="#{perRegistroAction.edicion}" /></td><td bgcolor="#DDE9DC"><h:outputText value="Identificación"    /></td><td><h:inputText  id="perIdentificacion" value="#{perRegistroAction.mcomPersonasReg.id.perIdentificacion}"   rendered="#{! perRegistroAction.edicion}" size="17" maxlength="15"  required="true"   ><f:validateLength minimum="3" maximum="15"/></h:inputText><h:outputText  value="#{perRegistroAction.mcomPersonasReg.id.perIdentificacion}"   rendered="#{ perRegistroAction.edicion}" /> </td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value=" "         /></td><td><rich:message id="message_perNombres"  for="perNombres" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td><td bgcolor="#DDE9DC"><h:outputText value=" "         /></td><td> <rich:message id="messageusuApellidos"  for="usuApellidos" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			
+			
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Nombres"    /></td><td colspan="1"> <h:inputText  id="perNombres" value="#{perRegistroAction.mcomPersonasReg.perNombres}"  size="21" maxlength="20"  required="true"   > <s:validate></s:validate>  </h:inputText></td><td bgcolor="#DDE9DC"><h:outputText value="Apellidos" /></td><td colspan="3"> <h:inputText  id="usuApellidos"  value="#{perRegistroAction.mcomPersonasReg.perApellidos}"  size="21" maxlength="20" required="true"  ><s:validate></s:validate></h:inputText></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value=" "         /></td><td> <rich:message id="messageusu_perciudad"  for="mpaValoresByFkPersonasValoresCiudad" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Ciudad de Residencia" /></td><td colspan="1"><rich:comboBox  id="mpaValoresByFkPersonasValoresCiudad"  value="#{perRegistroAction.mcomPersonasReg.mpaValoresByFkPersonasValoresCiudad}"       converter="#{listasAction.converterCiudad}" requiredMessage="Seleccione una ciudad" label="Persona" required="true"  defaultLabel="Seleccione una ciudad"> <s:selectItems     value="#{listasAction.listaCiudad}"       var="m" label="#{m.varNombre}"   /></rich:comboBox></td><td bgcolor="#DDE9DC"></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="message_perTelContacto1"  for="perTelContacto1" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="message_perTelContacto2"  for="perTelContacto2" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+		    <tr><td  bgcolor="#DDE9DC"><h:outputText value="Teléfono Contacto 1" /></td><td> <h:inputText id="perTelContacto1"  size="16" maxlength="15" value="#{perRegistroAction.mcomPersonasReg.perTelContacto1}" required="true" ></h:inputText></td><td bgcolor="#DDE9DC" ><h:outputText value="Teléfono Contacto 2" /></td><td> <h:inputText id="perTelContacto2"   size="16" maxlength="15" value="#{perRegistroAction.mcomPersonasReg.perTelContacto2}"  > </h:inputText></td></tr>
+		    <tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="message_perDireccion1"  for="perDireccion1" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+		    <tr><td bgcolor="#DDE9DC"><h:outputText value="Direccion 1" /></td><td  colspan="3"> <h:inputText id="perDireccion1"  size="100" maxlength="100" value="#{perRegistroAction.mcomPersonasReg.perDireccion1}" required="true" style="width:300px;"></h:inputText></td></tr>
+		    <tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="message_perDireccion2"  for="perDireccion2" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+		    <tr><td bgcolor="#DDE9DC"><h:outputText value="Direccion 2" /></td><td colspan="3"> <h:inputText id="perDireccion2"  size="100" maxlength="100" value="#{perRegistroAction.mcomPersonasReg.perDireccion2}"   style="width:300px;"></h:inputText></td></tr>
+		    <tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="message_perCorreo"  for="perCorreo" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Correo" /></td><td colspan="3"> <h:inputText id="perCorreo"  size="100" maxlength="100" value="#{perRegistroAction.mcomPersonasReg.perCorreo}"    style="width:300px;"> <f:validator validatorId="validar" /></h:inputText></td></tr>
+		  
+		    <tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="message_perUrl"  for="perUrl" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Pagina web" /></td><td colspan="3"> <h:inputText id="perUrl"  size="31" maxlength="30" value="#{perRegistroAction.mcomPersonasReg.perUrl}" style=" width : 300px;"><s:validate></s:validate>  </h:inputText></td></tr>
+		
+		    <tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td><rich:message id="message_perPersona1"  for="mpaValoresByFkPersonasValoresPersonas1" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td> </td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Tipo de Persona" /></td><td colspan="1"> <rich:comboBox  id="mpaValoresByFkPersonasValoresPersonas1"  value="#{perRegistroAction.mcomPersonasReg.mpaValoresByFkPersonasValoresPersonas1}"       converter="#{listasAction.converterPersona1}"  required="true"   requiredMessage="Seleccione un valor" label="Persona"    defaultLabel="Seleccione una persona"> <s:selectItems     value="#{listasAction.listaPersona1}"       var="m" label="#{m.varNombre}"   /></rich:comboBox> </td><td bgcolor="#DDE9DC"></td></tr>
+		  
+		  
+		  
+		    <tr><td bgcolor="#DDE9DC"><h:outputText value=" " /></td><td colspan="3"><rich:message id="message_perObservaciones"  for="perObservaciones" lang="30" tooltip="true"   styleClass="errors" showSummary="true" showDetail="false" ><f:facet name="errorMarker"><h:graphicImage value="/img/imgIcon/error.png" /></f:facet></rich:message></td></tr>
+			<tr><td bgcolor="#DDE9DC"><h:outputText value="Observaciones" /></td><td colspan="3"> <h:inputTextarea  id="perObservaciones"    value="#{perRegistroAction.mcomPersonasReg.perObservaciones}"   style=" width : 417px; height : 38px;"><f:validateLength maximum="50"/><a:support event="onblur" /></h:inputTextarea></td></tr>
+		  
+		    
+			<tr style="height:5px"><td colspan="4"><hr></hr></td></tr>
+			<tr><td align="center" colspan="4"><h:messages id="errors" globalOnly="true"      styleClass="errors"  /></td></tr>
+			<tr><td  colspan="4" style="text-align: center;"><s:link  id="voverLista"  view="/pages/negocio/persona/perLista.xhtml"   ><h:graphicImage value="/img/imgIcon/arrow_left.png" /><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">volver</span></rich:toolTip></s:link>&#160;&#160;<h:commandButton value="Actualizar"   action="#{perRegistroAction.guardar}"  image="/img/imgIcon/disc.png" rendered="#{perBuscarAction.permisoActualizar}" ><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom;color:BLACK;" ><span  style="white-space:nowrap;color:BLACK;">Registrar</span></rich:toolTip></h:commandButton>&#160;<s:link  action="#{perRegistroAction.nuevo()}"  rendered="#{perBuscarAction.permisoActualizar}"  > <h:graphicImage value="/img/imgIcon/file.png" /><rich:toolTip followMouse="true" direction="top-right" showDelay="300" styleClass="tooltip tooltip_custom"><span  style="white-space:nowrap;color:BLACK;">Nueva Persona</span></rich:toolTip></s:link>&#160;  </td></tr>
+	</tbody>
+		</table>
+	</h:form> 
+	          
+</html>
